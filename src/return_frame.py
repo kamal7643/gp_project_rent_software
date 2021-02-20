@@ -1,8 +1,10 @@
 import tkinter as tk
+from src.clear import *
+
 
 def return_frame(root):
-    for widget in root.winfo_children():
-        widget.destroy()
+    print("return")
+    clear(root)
     label = tk.Label(text="Enter Car ID :",font=("Arial Bold",10))
     label.place(relx=0.2,rely=.45)
     entry = tk.Entry(font=("Arial Bold",15),)

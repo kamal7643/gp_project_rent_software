@@ -3,6 +3,7 @@ from src.loading import *
 from src.start import *
 import  tkinter as tk
 def main():
+    print("main")
     head=RentalSotware("agk","abhi","100","101")
     root=tk.Tk()
     root.title("agk")
