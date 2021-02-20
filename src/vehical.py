@@ -12,4 +12,7 @@ class vehical:
     rented_for=""
     rented_time=""
     mili_meter_reading_on_rent=0.0
-    AC=False
+    AC=""
+    advance=0
+    def __init__(self,i):
+        self.id=i

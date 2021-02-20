@@ -2,7 +2,7 @@ from src.customer import *
 import tkinter as tk
 
 
-def start(root):
+def start(root,head):
     for widget in root.winfo_children():
         widget.destroy()
     customer_button = tk.Button(text="customer", width="20", background="blue", font=("Arial Bold", 12),command=lambda: customer(root))
