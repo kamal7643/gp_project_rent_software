@@ -23,7 +23,7 @@ class RentalSotware:
         self.on_repair_cars.clear()
         self.availabel_cars.clear()
     def __fetch__(self):
-        data = pd.read_excel(r'C:\Users\kamal swami\PycharmProjects\pythonProject\cache\all.xlsx')
+        data = pd.read_excel(r'.\cache\all.xlsx')
         data = pd.DataFrame(data, columns=['id',
                                            'model',
                                            'repair',

@@ -16,5 +16,4 @@ def customer(root,head):
     back_button.place(relx=0.0,rely=0.9)
     exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10), command=quit)
     exit_button.place(relx=0.91, rely=0.9)
-    start(root,head)
     #back button code
