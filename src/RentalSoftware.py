@@ -18,6 +18,10 @@ class RentalSotware:
         self.ownerName=ownername
         self.ownerPhoneNumber=ownerphn
         self.helpLineNumber=helplinen
+        self.all_cars.clear()
+        self.on_rent_cars.clear()
+        self.on_repair_cars.clear()
+        self.availabel_cars.clear()
     def __fetch__(self):
         data = pd.read_excel(r'C:\Users\kamal swami\PycharmProjects\pythonProject\cache\all.xlsx')
         data = pd.DataFrame(data, columns=['id',
