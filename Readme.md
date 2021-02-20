@@ -8,8 +8,8 @@ main => start page
 2.1    admin page => add/remove page<br/>
 2.2    admin page => static data<br/>
 
-#problems
+#problems<br/>
 command for back button in customer.py and return_frame.py
 
-#next
+#next<br/>
 class 
