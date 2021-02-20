@@ -12,3 +12,4 @@ class vehical:
     rented_for=""
     rented_time=""
     mili_meter_reading_on_rent=0.0
+    AC=False
