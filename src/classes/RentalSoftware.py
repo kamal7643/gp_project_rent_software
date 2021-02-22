@@ -1,4 +1,4 @@
-from src.vehical import *
+from src.classes.vehical import *
 import pandas as pd
 class RentalSotware:
     name=""

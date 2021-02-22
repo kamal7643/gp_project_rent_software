@@ -39,4 +39,6 @@ command for back button in customer.py and return_frame.py
 1. add home button at middle bottom in every page<br/>
 2. data management<br/>
 
-hi its girish
+## required packages<br/>
+1. pip install pillow<br/>
+2. pip install pandas 
