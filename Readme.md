@@ -41,4 +41,5 @@ command for back button in customer.py and return_frame.py
 
 ## required packages<br/>
 1. pip install pillow<br/>
-2. pip install pandas 
+2. pip install pandas<br/>
+3. pip install openpyxl xlsxwriter xlrd<br/>

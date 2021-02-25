@@ -1,13 +1,15 @@
-from src.screens.clear import *
-from src.screens.admin import *
+from src.screens import admin
+from src.screens import start
 from src.classes.vehical import *
 from tkinter import messagebox
 from src import do_exit
+from src.screens import clear
+import tkinter as tk
 
 
 def admin_action(root, head):
     print("admin action")
-    clear(root)
+    clear.clear(root)
     change_name_label = tk.Label(text="change name :-     ",
                                  width="15",
                                  font=("Arial Bold", 10))
@@ -21,13 +23,22 @@ def admin_action(root, head):
                               command=lambda: change_name(change_name_entry, root, head))
     change_button.place(relx=0.91, rely=0.05)
     handle_add_vehicle(head)
-    handle_remove_vehicle(head)
-    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10))
+    label = tk.Label(text="Remove Vehicle :", font=("Arial Bold", 10), width="15")
+    label.place(relx=0.0, rely=0.25)
+    lid = tk.Label(text="ID : ", font=("Arial Bold", 10), width="10")
+    lid.place(relx=0.10, rely=0.25)
+    en = tk.Entry(width="12", font=("Arial Bold", 10))
+    en.place(relx=0.18, rely=0.25)
+    choose_button = tk.Button(text="choose", font=("Arial Bold", 10), width="10", bg="gray90", command=lambda: handle_remove_vehicle(head))
+    choose_button.place(relx=0.3, rely=0.25)
+    remove = tk.Button(text="remove", font=("Arial Bold", 10), width="10", bg="gray60", command=lambda:final_remove(en, head))
+    remove.place(relx=0.91, rely=0.25)
+    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10), command = lambda: admin.admin(root, head))
     back_button.place(relx=0.0, rely=0.9)
     exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10), command=lambda: do_exit.do_exit(root, head))
     exit_button.place(relx=0.91, rely=0.9)
     home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
-                            command=lambda: start(root, head))
+                            command=lambda: start.start(root, head))
     home_button.place(relx=0.45, rely=0.9)
 
 
@@ -150,4 +161,53 @@ def final_add(head, en1, en2, en3, en4, en5):
 
 
 def handle_remove_vehicle(head):
-    print("not yet")
+    master = tk.Tk()
+    master.title("vehicles")
+    master.geometry("800x400")
+    sc = tk.Scrollbar(master)
+    sc.pack(side=tk.RIGHT, fill=tk.Y)
+    mylist = tk.Listbox(master, font=("Arial Bold", 12), width="100", yscrollcommand=sc.set)
+    for i in head.availabel_cars:
+        mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model+" prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
+    mylist.pack(side=tk.LEFT, fill=tk.BOTH)
+    sc.config(command=mylist.yview)
+
+    master.mainloop()
+
+
+def final_remove(en, head):
+    print("final remove funtion")
+    # if en.get() != "":
+    #     d = en.get()
+    #     if d.isdigit():
+    #         if True:
+    #             i = head['id'].index(int(d))
+    #             if messagebox.askquestion("Access Required", "Are you sure?") == "yes":
+    #                 d = int(d)
+                    # head['id'] = head['id'][:i] + head['id'][i+1:]
+                    # head['model'] = head['model'][:i] + head['model'][i + 1:]
+                    # head['repair'] = head['repair'][:i] + head['repair'][i + 1:]
+                    # head['rent'] = head['rent'][:i] + head['rent'][i + 1:]
+                    # head['available'] = head['available'][:i] + head['available'][i + 1:]
+                    # head['prize'] = head['prize'][:i] + head['prize'][i + 1:]
+                    # head['times_rented'] = head['times_rented'][:i] + head['times_rented'][i + 1:]
+                    # head['times_repaired'] = head['times_repaired'][:i] + head['times_repaired'][i + 1:]
+                    # head['pay_for_repair'] = head['pay_for_repair'][:i] + head['pay_for_repair'][i + 1:]
+                    # head['gain'] = head['gain'][:i] + head['gain'][i + 1:]
+                    # head['rented_for'] = head['rented_for'][:i] + head['rented_for'][i + 1:]
+                    # head['rented_time'] = head['rented_time'][:i] + head['rented_time'][i + 1:]
+                    # head['milli_meter_reading_on_rent'] = head['milli_meter_reading_on_rent'][:i] + head['milli_meter_reading_on_rent'][i + 1:]
+                    # head['AC'] = head['AC'][:i] + head['AC'][i + 1:]
+                    # head['advance'] = head['advance'][:i] + head['advance'][i + 1:]
+                    # head['per_hour'] = head['per_hour'][:i] + head['per_hour'][i + 1:]
+                    # head['per_km'] = head['per_km'][:i] + head['per_km'][i + 1:]
+                    # en.delete(0, tk.END)
+    #                 print("removed")
+    #             else:
+    #                 print("Action canceled")
+    #         else:
+    #             messagebox.showerror("Error", "no vehicle has "+str(d)+" as id")
+    #     else:
+    #         messagebox.showerror("Error", "id should be integer")
+    # else:
+    #     messagebox.showinfo("Blank Input", "Enter ID")
