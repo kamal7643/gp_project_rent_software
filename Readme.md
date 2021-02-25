@@ -33,7 +33,7 @@ main => start page
 head for software<br/>
 
 #problems<br/>
-command for back button in customer.py and return_frame.py
+y puri window tatti si lag rahi h<br/>
 
 #next<br/>
 1. add home button at middle bottom in every page<br/>

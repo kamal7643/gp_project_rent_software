@@ -1,5 +1,8 @@
+from PIL import ImageTk, Image
 import tkinter as tk
+
 
 def clear(root):
     for widget in root.winfo_children():
-        widget.destroy()
+        if type(widget) != tk.Canvas:
+            widget.destroy()

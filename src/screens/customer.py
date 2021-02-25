@@ -13,8 +13,8 @@ def customer(root, head):
                             command=lambda: get_rent.get_rent(root, head))
     return_button = tk.Button(text="return", width="20", background="blue", font=("Arial Bold", 12),
                               command=lambda: return_frame.return_frame(root, head))
-    rent_button.place(relx=0.35, rely=0.35)
-    return_button.place(relx=0.35, rely=0.45)
+    rent_button.place(relx=0.40, rely=0.35)
+    return_button.place(relx=0.40, rely=0.45)
     back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10),
                             command=lambda: start.start(root, head))
     back_button.place(relx=0.0, rely=0.9)

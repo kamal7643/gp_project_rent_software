@@ -9,6 +9,7 @@ class RentalSoftware:
     on_rent_cars = []
     on_repair_cars = []
     availabel_cars = []
+    general_data = []
     #all cars
     #on rent cars
     #on repair cars
@@ -69,11 +70,10 @@ class RentalSoftware:
                 self.on_rent_cars.append(temp)
             if temp.available == "yes":
                 self.availabel_cars.append(temp)
-# times_rented=0
-#     times_repaired=0
-#     pay_for_repair=0
-#     gain=0
-#     rented_for=""
-#     rented_time=""
-#     mili_meter_reading_on_rent=0.0
-#     AC=False
+        g_data = pd.read_excel(r'./cache/general.xlsx')
+        g_data = pd.DataFrame(g_data, columns=['model',
+                                               'nonAC',
+                                               'AC'])
+        self.general_data.clear()
+        for i in range(len(g_data)):
+            self.general_data.append((g_data['model'][i], g_data['nonAC'][i], g_data['AC'][i]))

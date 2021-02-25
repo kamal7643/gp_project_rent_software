@@ -1,10 +1,12 @@
 from src import update_cache
+from tkinter import messagebox
 
 
 def do_exit(root, head):
-    store_last(head)
-    update_cache.update_cache(head)
-    quit()
+    if messagebox.askquestion("Access Required", "Are you sure to quit?") == 'yes':
+        store_last(head)
+        update_cache.update_cache(head)
+        quit()
 
 
 def store_last(head):
