@@ -5,6 +5,7 @@ class RentalSoftware:
     owner_name = ""
     owner_phone_number = ""
     help_line_number = ""
+    sound = ""
     all_cars = []
     on_rent_cars = []
     on_repair_cars = []
@@ -15,11 +16,12 @@ class RentalSoftware:
     #on repair cars
     #av.
 
-    def __init__(self, name, ownername, ownerphn, helplinen):
+    def __init__(self, name, ownername, ownerphn, helplinen, sound):
         self.name = name
         self.owner_name = ownername
         self.owner_phone_number = ownerphn
         self.help_line_number = helplinen
+        self.sound = sound
         self.all_cars.clear()
         self.on_rent_cars.clear()
         self.on_repair_cars.clear()

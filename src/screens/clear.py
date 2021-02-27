@@ -1,4 +1,3 @@
-from PIL import ImageTk, Image
 import tkinter as tk
 
 

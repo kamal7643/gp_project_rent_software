@@ -5,12 +5,14 @@ import tkinter as tk
 from PIL import ImageTk, Image
 from src import do_exit
 from src.screens import help
+from src.screens import admin
+from src.screens import customer
 
 
 def main():
     print("main")
-    name, owner, owner_ph, helpline = get_last()
-    head = RentalSoftware(name, owner, owner_ph, helpline)
+    name, owner, owner_ph, helpline, sound = get_last()
+    head = RentalSoftware(name, owner, owner_ph, helpline, sound)
     root = tk.Tk()
     root.title(head.name)
     root.geometry("1100x700")
@@ -30,8 +32,8 @@ def main():
     root.bind("<Escape>", lambda e: do_exit.do_exit(root, head))
     root.bind("<Control-Key-m >", lambda e: start(root, head))
     root.bind("<Control-Key-h >", lambda e: help.help(root, head))
-    root.bind("<Control-Key-d >", lambda e: admin(root, head))
-    root.bind("<Control-Key-u >", lambda e: customer(root, head))
+    root.bind("<Control-Key-d >", lambda e: admin.admin(root, head))
+    root.bind("<Control-Key-u >", lambda e: customer.customer(root, head))
     root.mainloop()
 
 
@@ -41,8 +43,9 @@ def get_last():
     owner = f.readline()
     owner_ph = f.readline()
     helpline = f.readline()
+    sound = f.readline()
     f.close()
-    return name[:-1], owner[:-1], owner_ph[:-1], helpline[:-1]
+    return name[:-1], owner[:-1], owner_ph[:-1], helpline[:-1], sound[:-1]
 
 
 main()

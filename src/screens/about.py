@@ -1,12 +1,10 @@
-from src.screens.clear import *
-from src.screens import start
-from src import do_exit
-from src.screens import help
+from src.screens import clear
+from src import button
 import tkinter as tk
 
 
 def about(root, head):
-    clear(root)
+    clear.clear(root)
     print("about")
     label = tk.Label(root, text="Girish Kumar      \nKamal Swami    \nAbhishek Thakur\n"
                      + head.name+"\n"
@@ -17,17 +15,19 @@ def about(root, head):
                      justify=tk.LEFT,
                      font=("Arial Bold", 10))
     label.place(relx=0, rely=0)
-    help_button = tk.Button(text="help", width="12", background="gray80", font=("Arial Bold", 10), command=lambda: help.help(root, head))
+    help_button = tk.Button(text="help", width="12", background="gray80", font=("Arial Bold", 10), command=lambda: button.button(root, head, "help"))
     help_button.place(relx=0.9, rely=0.0)
+    setting_button = tk.Button(text="setting", width="12", background="gray80", font=("Arial Bold", 10), command=lambda :button.button(root, head, "setting"))
+    setting_button.place(relx=0.9, rely=0.05)
     back_button = tk.Button(text="back",
                             width="12",
                             background="gray80",
                             font=("Arial Bold", 10),
-                            command=lambda:start.start(root, head))
+                            command=lambda: button.button(root, head, "start"))
     back_button.place(relx=0.0, rely=0.9)
     exit_button = tk.Button(text="exit",
                             width="12",
                             background="gray80",
                             font=("Arial Bold", 10),
-                            command=lambda: do_exit.do_exit(root, head))
+                            command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)

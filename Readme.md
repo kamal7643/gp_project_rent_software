@@ -35,7 +35,8 @@ head for software<br/>
 #problems<br/>
 
 
-#next<br/>n 
+#next<br/>
+1. add basic settings 
 
 ## required packages<br/>
 1. pip install pillow<br/>
