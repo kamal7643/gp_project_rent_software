@@ -11,7 +11,7 @@ main => start page
 #file intro<br/>
 ##src
 1.loading.py if fetch takes a while<br/>
-2.clear.py clear tk<br/>
+2.clear.py clear tk(not canvas background) <br/>
 3.start.py (home page)<br/>
 4.customer.py (for customer purpose)<br/>
 5.get_rent.py customer wants a rent car<br/>
@@ -33,11 +33,9 @@ main => start page
 head for software<br/>
 
 #problems<br/>
-y puri window tatti si lag rahi h<br/>
 
-#next<br/>
-1. add home button at middle bottom in every page<br/>
-2. data management<br/>
+
+#next<br/>n 
 
 ## required packages<br/>
 1. pip install pillow<br/>

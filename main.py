@@ -4,6 +4,7 @@ from src.screens.loading import *
 import tkinter as tk
 from PIL import ImageTk, Image
 from src import do_exit
+from src.screens import help
 
 
 def main():
@@ -27,6 +28,10 @@ def main():
     print(len(head.all_cars), end=" cars loaded!\n")
     root.protocol("WM_DELETE_WINDOW", lambda: do_exit.do_exit(root, head))
     root.bind("<Escape>", lambda e: do_exit.do_exit(root, head))
+    root.bind("<Control-Key-m >", lambda e: start(root, head))
+    root.bind("<Control-Key-h >", lambda e: help.help(root, head))
+    root.bind("<Control-Key-d >", lambda e: admin(root, head))
+    root.bind("<Control-Key-u >", lambda e: customer(root, head))
     root.mainloop()
 
 

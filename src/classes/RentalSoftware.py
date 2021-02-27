@@ -44,6 +44,11 @@ class RentalSoftware:
                                            'advance',
                                            'per_hour',
                                            'per_km'])
+
+        self.availabel_cars.clear()
+        self.all_cars.clear()
+        self.on_rent_cars.clear()
+        self.on_repair_cars.clear()
         for i in range(len(data)):
             temp = vehical(i)
             temp.id = data['id'][i]

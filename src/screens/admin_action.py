@@ -176,7 +176,25 @@ def handle_remove_vehicle(head):
 
 
 def final_remove(en, head):
-    print("final remove funtion")
+    d=en.get()
+    if d == "":
+        messagebox.showerror("ID expected", "Please enter id ")
+    else:
+        if d.isdigit():
+            d = int(d)
+            for i in range(len(head.availabel_cars)):
+                if d == head.availabel_cars[i].id:
+                    if messagebox.askquestion("Access Required", "Are you sure to remove") == 'yes':
+                        head.availabel_cars.pop(i)
+                        for j in range(len(head.all_cars)):
+                            if head.all_cars[j].id == d:
+                                head.all_cars.pop(j)
+                                print("removed"+str(d))
+                                en.delete(0, tk.END)
+
+        else:
+            messagebox.showerror("ID expected", "ID should be integer")
+
     # if en.get() != "":
     #     d = en.get()
     #     if d.isdigit():
