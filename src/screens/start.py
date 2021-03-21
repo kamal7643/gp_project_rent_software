@@ -1,4 +1,5 @@
 from src.screens import clear
+from src.screens import customer
 from src import button
 import tkinter as tk
 
@@ -10,7 +11,7 @@ def start(root, head):
                              command=lambda: button.button(root, head, "about"))
     about_button.place(relx=0.0, rely=0.9)
     customer_button = tk.Button(text="customer", width="20", background="blue", font=("Arial Bold", 12),
-                                command=lambda: button.button(root, head, "customer"))
+                                command=lambda: customer_wants(root, head))
     admin_button = tk.Button(text="Admin", width="20", background="blue", font=("Arial Bold", 12),
                              command=lambda: admin_wants(root, head))
     customer_button.place(relx=0.40, rely=0.35)
@@ -28,3 +29,10 @@ def admin_wants(root, head):
         button.button(root, head, "admin")
     else:
         button.button(root, head, "login")
+
+
+def customer_wants(root, head):
+    if head.logged_in_customer == "yes":
+        customer.customer(root, head, head.customer_id)
+    else:
+        button.button(root, head, "login_customer")

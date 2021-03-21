@@ -16,7 +16,7 @@ def main():
     root = tk.Tk()
     root.title(head.name)
     root.geometry("1100x700")
-    img = Image.open(r"src/img/bg.jpg")
+    img = Image.open(r"src/img/bg.jfif")
     img = ImageTk.PhotoImage(img)
     root.iconphoto(False, img)
     root.resizable(width=False, height=False)
@@ -35,6 +35,7 @@ def main():
     root.bind("<Control-Key-` >", lambda e: help.help(root, head))
     root.bind("<Control-Key-d >", lambda e: admin.admin(root, head))
     root.bind("<Control-Key-u >", lambda e: customer.customer(root, head))
+    root.configure(cursor="arrow")
     root.mainloop()
 
 

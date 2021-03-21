@@ -1,5 +1,4 @@
 from src.screens import about
-from src.screens import customer
 from src.screens import admin
 from src.screens import help
 from src.screens import start
@@ -9,9 +8,11 @@ from src.screens import get_rent
 from src.screens import return_frame
 from src.screens import setting
 from src.screens import login
+from src.screens import login_customer
+from src.screens import customer
+from src.screens import new_customer
 from src import do_exit
 import winsound
-import tkinter as tk
 import os
 
 
@@ -20,8 +21,6 @@ def button(root, head, f_name):
         winsound.Beep(600, 100)
     if f_name == "about":
         about.about(root, head)
-    elif f_name == "customer":
-        customer.customer(root, head)
     elif f_name == "admin":
         admin.admin(root, head)
     elif f_name == "do_exit":
@@ -44,3 +43,9 @@ def button(root, head, f_name):
         os.startfile("main.py")
     elif f_name == "login":
         login.login(root, head)
+    elif f_name == "login_customer":
+        login_customer.login_customer(root, head)
+    elif f_name == "customer":
+        customer.customer(root, head)
+    elif f_name == "new_customer":
+        new_customer.new_customer(root, head)

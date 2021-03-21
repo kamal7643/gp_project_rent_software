@@ -50,6 +50,7 @@ def change_name(entry, root, head):
             head.name = entry.get()
             entry.delete(0, tk.END)
             root.title(head.name)
+            head.history.append("name changed")
         else:
             print("Action Cancel!")
     else:
@@ -153,6 +154,7 @@ def final_add(head, en1, en2, en3, en4, en5):
         messagebox.showerror("Error", "Vehicle already exists!")
     else:
         head.all_cars.append(temp)
+        head.history.append("new car added")
         head.availabel_cars.append(temp)
         print("added"+str(len(head.all_cars)))
         en1.delete(0, tk.END)
@@ -192,6 +194,7 @@ def final_remove(en, head):
                             if d == head.all_cars[j].id:
                                 del head.all_cars[j]
                                 en.delete(0, tk.END)
+                                head.history.append("car removed")
                                 print("removed ID :" + str(d))
                                 return
         else:

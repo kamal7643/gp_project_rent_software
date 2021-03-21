@@ -1,4 +1,5 @@
 from src.classes.vehical import *
+from src.classes.customer import *
 import pandas as pd
 
 
@@ -10,18 +11,22 @@ class RentalSoftware:
     sound = ""
     bg_file_name = ""
     logged_in = "no"
+    logged_in_customer = "no"
+    customer_id = -1
     password = ""
     all_cars = []
     on_rent_cars = []
     on_repair_cars = []
     availabel_cars = []
     general_data = []
+    customers = []
+    history = []
 
-    def __init__(self, name, ownername, ownerphn, helplinen, sound, bg_file_name, pin):
+    def __init__(self, name, owner_name, owner_phn, Helpline, sound, bg_file_name, pin):
         self.name = name
-        self.owner_name = ownername
-        self.owner_phone_number = ownerphn
-        self.help_line_number = helplinen
+        self.owner_name = owner_name
+        self.owner_phone_number = owner_phn
+        self.help_line_number = Helpline
         self.sound = sound
         self.bg_file_name = bg_file_name
         self.all_cars.clear()
@@ -31,7 +36,7 @@ class RentalSoftware:
         self.password = pin
 
     def __fetch__(self):
-        data = pd.read_excel(r'.\cache\all.xlsx')
+        data = pd.read_excel(r'.\cache\cars.xlsx')
         data = pd.DataFrame(data, columns=['id',
                                            'model',
                                            'repair',
@@ -80,20 +85,75 @@ class RentalSoftware:
                 self.on_rent_cars.append(temp)
             if temp.available == "yes":
                 self.availabel_cars.append(temp)
-        g_data = pd.read_excel(r'./cache/general.xlsx')
-        g_data = pd.DataFrame(g_data, columns=['model',
-                                               'nonAC',
-                                               'AC'])
+        customer_data = pd.read_excel(r'./cache/customers.xlsx')
+        customer_data = pd.DataFrame(customer_data, columns=['id',
+                                                             'name',
+                                                             'phone_number',
+                                                             'email',
+                                                             'licence',
+                                                             'car_rented_id',
+                                                             'time_rented',
+                                                             'time_to_return',
+                                                             'payment',
+                                                             'password'])
         self.general_data.clear()
-        for i in range(len(g_data)):
-            self.general_data.append((g_data['model'][i], g_data['nonAC'][i], g_data['AC'][i]))
+        self.customers.clear()
+        for i in range(len(customer_data)):
+            temp = Customer(customer_data['id'][i])
+            temp.profile(customer_data['name'][i],
+                         customer_data['phone_number'][i],
+                         customer_data['email'][i],
+                         customer_data['licence'][i],
+                         customer_data['car_rented_id'][i],
+                         customer_data['time_rented'][i],
+                         customer_data['time_to_return'][i],
+                         customer_data['payment'][i],
+                         customer_data['password'][i])
+            self.customers.append(temp)
+        self.history.clear()
+        f = open("cache\\history.txt", "r")
+        line = f.readline()
+        while line:
+            self.history.append(line[:-1])
+            line = f.readline()
 
     def is_admin(self, password):
-        print(password)
-        x=self.password
-        print(x)
         if self.password == password:
             self.logged_in = "yes"
             return True
         else:
             return False
+
+    def is_customer(self, password):
+        for i in self.customers:
+
+            if i.password == password:
+                self.logged_in_customer = "yes"
+                self.customer_id = i.id
+                return True
+
+    def is_double_customer(self, other):
+        for i in self.customers:
+            if i.email == other.email or i.phone_number == other.phone_number:
+                return True
+        return False
+
+    def is_possible_password(self, password):
+        for i in self.customers:
+            if i.password == password:
+                return False
+        return True
+
+    def delete_customer(self, id):
+        for i in range(len(self.customers)):
+            if self.customers[i].id == id:
+                self.customers.pop(i)
+                self.history.append("Account deleted!")
+                return True
+        return False
+
+    def get_customer(self, id):
+        for i in self.customers:
+            if i.id == id:
+                return i
+        return None

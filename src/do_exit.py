@@ -19,4 +19,8 @@ def store_last(head):
     f.write(head.bg_file_name+"\n")
     f.write(head.password+"\n")
     f.close()
+    f = open("cache\history.txt", "w")
+    for i in head.history:
+        f.write(i+"\n")
+    f.close()
     print("cache txt files updated")
