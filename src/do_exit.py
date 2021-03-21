@@ -16,5 +16,7 @@ def store_last(head):
     f.write(head.owner_phone_number+"\n")
     f.write(head.help_line_number+"\n")
     f.write(head.sound+"\n")
+    f.write(head.bg_file_name+"\n")
+    f.write(head.password+"\n")
     f.close()
     print("cache txt files updated")

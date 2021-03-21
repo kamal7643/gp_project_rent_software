@@ -8,9 +8,11 @@ from src.screens import admin_show
 from src.screens import get_rent
 from src.screens import return_frame
 from src.screens import setting
+from src.screens import login
 from src import do_exit
 import winsound
 import tkinter as tk
+import os
 
 
 def button(root, head, f_name):
@@ -38,3 +40,7 @@ def button(root, head, f_name):
         return_frame.return_frame(root, head)
     elif f_name == "setting":
         setting.setting(root, head)
+    elif f_name == "restart":
+        os.startfile("main.py")
+    elif f_name == "login":
+        login.login(root, head)

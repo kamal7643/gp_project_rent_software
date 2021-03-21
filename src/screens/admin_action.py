@@ -27,13 +27,17 @@ def admin_action(root, head):
     lid.place(relx=0.10, rely=0.25)
     en = tk.Entry(width="12", font=("Arial Bold", 10))
     en.place(relx=0.18, rely=0.25)
-    choose_button = tk.Button(text="choose", font=("Arial Bold", 10), width="10", bg="gray90", command=lambda: handle_remove_vehicle(head))
+    choose_button = tk.Button(text="choose", font=("Arial Bold", 10), width="10", bg="gray90",
+                              command=lambda: handle_remove_vehicle(head))
     choose_button.place(relx=0.3, rely=0.25)
-    remove = tk.Button(text="remove", font=("Arial Bold", 10), width="10", bg="gray60", command=lambda:final_remove(en, head))
+    remove = tk.Button(text="remove", font=("Arial Bold", 10), width="10", bg="gray60",
+                       command=lambda: final_remove(en, head))
     remove.place(relx=0.91, rely=0.25)
-    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10), command = lambda: button.button(root, head, "admin"))
+    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10),
+                            command=lambda: button.button(root, head, "admin"))
     back_button.place(relx=0.0, rely=0.9)
-    exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10), command=lambda: button.button(root, head, "do_exit"))
+    exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10),
+                            command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)
     home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
@@ -174,7 +178,7 @@ def handle_remove_vehicle(head):
 
 
 def final_remove(en, head):
-    d=en.get()
+    d = en.get()
     if d == "":
         messagebox.showerror("ID expected", "Please enter id ")
     else:
@@ -185,45 +189,10 @@ def final_remove(en, head):
                     if messagebox.askquestion("Access Required", "Are you sure to remove") == 'yes':
                         head.availabel_cars.pop(i)
                         for j in range(len(head.all_cars)):
-                            if head.all_cars[j].id == d:
-                                head.all_cars.pop(j)
-                                print("removed"+str(d))
+                            if d == head.all_cars[j].id:
+                                del head.all_cars[j]
                                 en.delete(0, tk.END)
-
+                                print("removed ID :" + str(d))
+                                return
         else:
             messagebox.showerror("ID expected", "ID should be integer")
-
-    # if en.get() != "":
-    #     d = en.get()
-    #     if d.isdigit():
-    #         if True:
-    #             i = head['id'].index(int(d))
-    #             if messagebox.askquestion("Access Required", "Are you sure?") == "yes":
-    #                 d = int(d)
-                    # head['id'] = head['id'][:i] + head['id'][i+1:]
-                    # head['model'] = head['model'][:i] + head['model'][i + 1:]
-                    # head['repair'] = head['repair'][:i] + head['repair'][i + 1:]
-                    # head['rent'] = head['rent'][:i] + head['rent'][i + 1:]
-                    # head['available'] = head['available'][:i] + head['available'][i + 1:]
-                    # head['prize'] = head['prize'][:i] + head['prize'][i + 1:]
-                    # head['times_rented'] = head['times_rented'][:i] + head['times_rented'][i + 1:]
-                    # head['times_repaired'] = head['times_repaired'][:i] + head['times_repaired'][i + 1:]
-                    # head['pay_for_repair'] = head['pay_for_repair'][:i] + head['pay_for_repair'][i + 1:]
-                    # head['gain'] = head['gain'][:i] + head['gain'][i + 1:]
-                    # head['rented_for'] = head['rented_for'][:i] + head['rented_for'][i + 1:]
-                    # head['rented_time'] = head['rented_time'][:i] + head['rented_time'][i + 1:]
-                    # head['milli_meter_reading_on_rent'] = head['milli_meter_reading_on_rent'][:i] + head['milli_meter_reading_on_rent'][i + 1:]
-                    # head['AC'] = head['AC'][:i] + head['AC'][i + 1:]
-                    # head['advance'] = head['advance'][:i] + head['advance'][i + 1:]
-                    # head['per_hour'] = head['per_hour'][:i] + head['per_hour'][i + 1:]
-                    # head['per_km'] = head['per_km'][:i] + head['per_km'][i + 1:]
-                    # en.delete(0, tk.END)
-    #                 print("removed")
-    #             else:
-    #                 print("Action canceled")
-    #         else:
-    #             messagebox.showerror("Error", "no vehicle has "+str(d)+" as id")
-    #     else:
-    #         messagebox.showerror("Error", "id should be integer")
-    # else:
-    #     messagebox.showinfo("Blank Input", "Enter ID")

@@ -1,31 +1,34 @@
 from src.classes.vehical import *
 import pandas as pd
+
+
 class RentalSoftware:
     name = ""
     owner_name = ""
     owner_phone_number = ""
     help_line_number = ""
     sound = ""
+    bg_file_name = ""
+    logged_in = "no"
+    password = ""
     all_cars = []
     on_rent_cars = []
     on_repair_cars = []
     availabel_cars = []
     general_data = []
-    #all cars
-    #on rent cars
-    #on repair cars
-    #av.
 
-    def __init__(self, name, ownername, ownerphn, helplinen, sound):
+    def __init__(self, name, ownername, ownerphn, helplinen, sound, bg_file_name, pin):
         self.name = name
         self.owner_name = ownername
         self.owner_phone_number = ownerphn
         self.help_line_number = helplinen
         self.sound = sound
+        self.bg_file_name = bg_file_name
         self.all_cars.clear()
         self.on_rent_cars.clear()
         self.on_repair_cars.clear()
         self.availabel_cars.clear()
+        self.password = pin
 
     def __fetch__(self):
         data = pd.read_excel(r'.\cache\all.xlsx')
@@ -84,3 +87,13 @@ class RentalSoftware:
         self.general_data.clear()
         for i in range(len(g_data)):
             self.general_data.append((g_data['model'][i], g_data['nonAC'][i], g_data['AC'][i]))
+
+    def is_admin(self, password):
+        print(password)
+        x=self.password
+        print(x)
+        if self.password == password:
+            self.logged_in = "yes"
+            return True
+        else:
+            return False

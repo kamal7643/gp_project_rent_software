@@ -1,4 +1,5 @@
 from src.screens import clear
+from src.screens import pay
 from src import button
 import tkinter as tk
 
@@ -11,7 +12,8 @@ def return_frame(root, head):
     entry = tk.Entry(font=("Arial Bold", 15))
     entry.place(relx=0.33, rely=0.45)
     entry.focus()
-    return_button = tk.Button(text="return", width="12", background="gray40", font=("Arial Bold", 10))
+    return_button = tk.Button(text="return", width="12", background="gray40", font=("Arial Bold", 10),
+                              command=lambda: pay.pay(root, head, 1000))
     return_button.place(relx=.85, rely=0.45)
     back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10), command=lambda: button.button(root, head, "customer"))
     back_button.place(relx=0.0, rely=0.9)
