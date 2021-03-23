@@ -33,6 +33,6 @@ def admin_wants(root, head):
 
 def customer_wants(root, head):
     if head.logged_in_customer == "yes":
-        customer.customer(root, head, head.customer_id)
+        customer.customer(root, head)
     else:
         button.button(root, head, "login_customer")

@@ -13,6 +13,7 @@ class RentalSoftware:
     logged_in = "no"
     logged_in_customer = "no"
     customer_id = -1
+    logged_in_customer_index = -1
     password = ""
     all_cars = []
     on_rent_cars = []
@@ -92,6 +93,8 @@ class RentalSoftware:
                                                              'email',
                                                              'licence',
                                                              'car_rented_id',
+                                                             'rented_car_index',
+                                                             'rented_car_index_second',
                                                              'time_rented',
                                                              'time_to_return',
                                                              'payment',
@@ -105,6 +108,8 @@ class RentalSoftware:
                          customer_data['email'][i],
                          customer_data['licence'][i],
                          customer_data['car_rented_id'][i],
+                         customer_data['rented_car_index'][i],
+                         customer_data['rented_car_index_second'][i],
                          customer_data['time_rented'][i],
                          customer_data['time_to_return'][i],
                          customer_data['payment'][i],
@@ -125,11 +130,13 @@ class RentalSoftware:
             return False
 
     def is_customer(self, password):
+        temp_index = -1
         for i in self.customers:
-
+            temp_index += 1
             if i.password == password:
                 self.logged_in_customer = "yes"
                 self.customer_id = i.id
+                self.logged_in_customer_index = temp_index
                 return True
 
     def is_double_customer(self, other):
@@ -157,3 +164,22 @@ class RentalSoftware:
             if i.id == id:
                 return i
         return None
+
+    def remove_from_available(self, tem):
+        for i in range(len(self.availabel_cars)):
+            if self.availabel_cars[i].model == tem.model and self.availabel_cars[i].AC == tem.AC:
+                self.availabel_cars.pop(i)
+                return True
+
+    def add_to_on_rent(self, tem):
+        self.on_rent_cars.append(tem)
+        return True
+
+    def get_charge(self, tem, hour, km):
+        if tem.per_hour > tem.per_km:
+            return tem.per_hour*hour
+        else:
+            return tem.per_km*km
+
+    def pay(self, amount):
+        return True

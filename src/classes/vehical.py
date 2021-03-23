@@ -9,7 +9,7 @@ class vehical:
     times_repaired = 0
     pay_for_repair = 0
     gain = 0
-    rented_for = ""
+    rented_for = 0
     rented_time = ""
     milli_meter_reading_on_rent = 0.0
     AC = ""

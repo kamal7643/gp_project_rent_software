@@ -1,24 +1,70 @@
 from src.screens import clear
-from src.screens import pay
 from src import button
 import tkinter as tk
+import time
 
 
 def return_frame(root, head):
     print("return")
-    clear.clear(root)
-    label = tk.Label(text="Enter Car ID :", font=("Arial Bold", 10))
-    label.place(relx=0.2, rely=.45)
-    entry = tk.Entry(font=("Arial Bold", 15))
-    entry.place(relx=0.33, rely=0.45)
-    entry.focus()
-    return_button = tk.Button(text="return", width="12", background="gray40", font=("Arial Bold", 10),
-                              command=lambda: pay.pay(root, head, 1000))
-    return_button.place(relx=.85, rely=0.45)
-    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10), command=lambda: button.button(root, head, "customer"))
+    frame = tk.Frame(root,
+                     width="625",
+                     height="400",
+                     bg="purple3")
+    frame.place(relx=0.2, rely=0.2)
+    text_to_show = ""
+    index = head.customers[head.logged_in_customer_index].car_rented_id
+    if index == -1:
+        text_to_show += "No vehicle Rented Yet to you!"
+    else:
+        text_to_show += "Rented vehicle -\n"
+        text_to_show += "Model Name :" + head.all_cars[
+            head.customers[head.logged_in_customer_index].rented_car_index].model
+        text_to_show += "\nAC: " + head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].AC
+        text_to_show += "\nRented for :" + str(head.customers[head.logged_in_customer_index].time_car_rented) + "hours"
+        text_to_show += "\nPayment :" + str(head.customers[head.logged_in_customer_index].payment)
+    label = tk.Label(frame,
+                     text=text_to_show,
+                     width="50",
+                     bg="purple3",
+                     justify=tk.LEFT,
+                     anchor='nw',
+                     font=("Arial", 12))
+    label.place(relx=0, rely=0)
+    return_button = tk.Button(frame,
+                              text="return",
+                              width="15",
+                              bg="gray60",
+                              font=("Arial", 12),
+                              command=lambda: return_function(frame, head,))
+    return_button.place(relx=0.7, rely=0.7)
+    back_button = tk.Button(frame,
+                            text="back",
+                            width="15",
+                            bg="gray60",
+                            font=("Arial", 12),
+                            command=lambda: frame.destroy())
+    back_button.place(relx=0.4, rely=0.9)
+    back_button = tk.Button(text="back",
+                            width="12",
+                            background="gray80",
+                            font=("Arial Bold", 10),
+                            command=lambda: button.button(root, head, "customer"))
     back_button.place(relx=0.0, rely=0.9)
-    exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10), command=lambda: button.button(root, head, "do_exit"))
+    exit_button = tk.Button(text="exit",
+                            width="12",
+                            background="gray80",
+                            font=("Arial Bold", 10),
+                            command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)
-    home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
+    home_button = tk.Button(text="home",
+                            width="12",
+                            background="gray80",
+                            font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
     home_button.place(relx=0.45, rely=0.9)
+
+
+def return_function(frame, head):
+    time_used = time.time()-head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].rented_time
+    time_used /= 3600
+    time_used = int(time_used)

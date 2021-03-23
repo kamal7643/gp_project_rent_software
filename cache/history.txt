@@ -4,3 +4,5 @@ Account created
 Account created
 Account deleted!
 Account deleted!
+car removed
+new car added

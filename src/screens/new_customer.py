@@ -71,6 +71,7 @@ def new_customer(root, head):
                                     messagebox.showinfo("Account", "Your account has been created!")
                                     head.logged_in_customer = "yes"
                                     head.customer_id = temp.id
+                                    head.logged_in_customer_index = len(head.customers)-1
                                     button.button(root, head, "customer")
                                 else:
                                     messagebox.showerror("Account", "choose a different pin")
