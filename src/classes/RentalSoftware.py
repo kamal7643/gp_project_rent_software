@@ -1,6 +1,7 @@
 from src.classes.vehical import *
 from src.classes.customer import *
 import pandas as pd
+import tkinter as tk
 
 
 class RentalSoftware:
@@ -181,5 +182,37 @@ class RentalSoftware:
         else:
             return tem.per_km*km
 
-    def pay(self, amount):
+    def pay(self, amount, root):
+        if amount == 0:
+            return True
+        frame = tk.Frame(root,
+                         width="625",
+                         height="400",
+                         bg="purple3")
+        frame.place(relx=0.2, rely=0.2)
+        text = ""
+        if amount > 0:
+            text += "pay"
+        else:
+            amount *= -1
+            text += "refund"
+        label = tk.Label(frame, text=str(float(amount))+"RS")
+        label.place(relx=0.2, rely=0.3)
+        button = tk.Button(frame, text=text, command=lambda: frame.destroy())
+        button.place(relx=0.45, rely=0.3)
         return True
+
+    def return_vehicle(self, tem):
+        tem.available = "yes"
+        tem.rent = "no"
+        self.availabel_cars.append(tem)
+        for i in range(len(self.on_rent_cars)):
+            if tem.id == self.on_rent_cars[i].id:
+                self.on_rent_cars.pop(i)
+
+    def free_customer(self, tem):
+        self.customers[self.logged_in_customer_index].car_rented_id = -1
+        self.customers[self.logged_in_customer_index].rented_car_index = -1
+        self.customers[self.logged_in_customer_index].rented_car_index_second = -1
+        self.customers[self.logged_in_customer_index].time_car_rented = 0
+        self.customers[self.logged_in_customer_index].time_to_return = 0

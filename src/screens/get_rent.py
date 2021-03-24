@@ -164,7 +164,7 @@ def get_now(model, ac, hour, head, frame, root):
         tem = head.all_cars[i]
         if tem.model == model.get() and tem.AC == ac.get() and tem.available == "yes":
             amount = int(head.get_charge(tem, hour.get(), km=0))
-            if head.pay(amount/2):
+            if head.pay(amount/2, root):
                 head.customers[head.logged_in_customer_index].payment += amount-amount/2
                 tem.advance = amount/2
                 tem.rented_for = hour.get()
