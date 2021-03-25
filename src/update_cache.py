@@ -54,7 +54,8 @@ def update_cache(head):
     wsh.write(0, 8, 'time_rented')
     wsh.write(0, 9, 'time_to_return')
     wsh.write(0, 10, 'payment')
-    wsh.write(0, 11, 'password')
+    wsh.write(0, 11, 'username')
+    wsh.write(0, 12, 'password')
     for i in range(len(head.customers)):
         wsh.write(i + 1, 0, head.customers[i].id)
         wsh.write(i + 1, 1, head.customers[i].name)
@@ -67,6 +68,7 @@ def update_cache(head):
         wsh.write(i + 1, 8, head.customers[i].time_car_rented)
         wsh.write(i + 1, 9, head.customers[i].time_to_return)
         wsh.write(i + 1, 10, head.customers[i].payment)
-        wsh.write(i + 1, 11, head.customers[i].password)
+        wsh.write(i + 1, 11, head.customers[i].username)
+        wsh.write(i + 1, 12, head.customers[i].password)
     final.close()
     print("all files updated")

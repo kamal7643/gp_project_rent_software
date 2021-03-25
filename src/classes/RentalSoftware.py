@@ -99,6 +99,7 @@ class RentalSoftware:
                                                              'time_rented',
                                                              'time_to_return',
                                                              'payment',
+                                                             'username',
                                                              'password'])
         self.general_data.clear()
         self.customers.clear()
@@ -114,6 +115,7 @@ class RentalSoftware:
                          customer_data['time_rented'][i],
                          customer_data['time_to_return'][i],
                          customer_data['payment'][i],
+                         customer_data['username'][i],
                          customer_data['password'][i])
             self.customers.append(temp)
         self.history.clear()
@@ -130,11 +132,11 @@ class RentalSoftware:
         else:
             return False
 
-    def is_customer(self, password):
+    def is_customer(self, username, password):
         temp_index = -1
         for i in self.customers:
             temp_index += 1
-            if i.password == password:
+            if i.username == username and i.password == password:
                 self.logged_in_customer = "yes"
                 self.customer_id = i.id
                 self.logged_in_customer_index = temp_index

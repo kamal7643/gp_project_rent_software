@@ -12,12 +12,13 @@ class Customer:
     time_car_rented = ""
     time_to_return = ""
     payment = 0
+    username = ""
     password = ""
 
     def __init__(self, id):
         self.id = id
 
-    def profile(self, name, phn, email, driving_l, car_id, car_index, car_index_second, time_car_rented, time_to_return, payment, password):
+    def profile(self, name, phn, email, driving_l, car_id, car_index, car_index_second, time_car_rented, time_to_return, payment, username, password):
         self.name = str(name)
         self.phone_number = str(phn)
         self.email = str(email)
@@ -28,6 +29,7 @@ class Customer:
         self.time_car_rented = int(time_car_rented)
         self.time_to_return = time_to_return
         self.payment = payment
+        self.username = str(username)
         self.password = str(password)
 
     def return_status(self):
