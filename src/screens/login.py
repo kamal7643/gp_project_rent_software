@@ -7,17 +7,22 @@ from tkinter import messagebox
 def login(root, head):
     print("admin log-in")
     clear.clear(root)
-    label = tk.Label(text="Password :", width="12", font=("Arial", 20))
+    frame = tk.Frame(root,
+                     width="625",
+                     height="400",
+                     bg="purple3")
+    frame.place(relx=0.2, rely=0.2)
+    label = tk.Label(frame, text="Password :", width="12", font=("Arial", 12))
     label.place(relx=.2, rely=0.35)
-    en = tk.Entry(width="12", font=("Arial Bold", 20), show="*")
+    en = tk.Entry(frame, width="12", font=("Arial", 12), show="*")
     en.place(relx=0.45, rely=0.35)
     en.focus()
-    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10),
+    back_button = tk.Button(frame, text="back", width="12", background="gray80", font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
     back_button.place(relx=0.0, rely=0.9)
-    next_button = tk.Button(text="login", width="12", background="gray80", font=("Arial Bold", 10),
+    next_button = tk.Button(frame, text="login", width="12", background="gray80", font=("Arial Bold", 10),
                             command=lambda: retquest_to_login(root, head, en))
-    next_button.place(relx=0.91, rely=0.9)
+    next_button.place(relx=0.83, rely=0.9)
 
 
 def retquest_to_login(root, head, en):

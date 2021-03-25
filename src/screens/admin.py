@@ -24,7 +24,7 @@ def admin(root, head):
         home_button.place(relx=0.45, rely=0.9)
         log_out_button = tk.Button(text="Logout", width="15", font=("Arial", 10),
                                    command=lambda: logout(root, head))
-        log_out_button.place(relx=0.85, rely=0.07)
+        log_out_button.place(relx=0.85, rely=0.0)
 
 
 def logout(root, head):

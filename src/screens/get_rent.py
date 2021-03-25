@@ -111,12 +111,18 @@ def get_vehicle(root, head):
         label3.place(relx=0, rely=0.2)
         hour_drop = tk.OptionMenu(frame, hour_var, *hour_choices)
         hour_drop.place(relx=0.2, rely=0.2)
+        list_av_button = tk.Button(frame,
+                                   text="Available cars",
+                                   bg="gray50",
+                                   font=("Arial", 12),
+                                   command=lambda: list_cars(root, head))
+        list_av_button.place(relx=0.2, rely=0.3)
         get_now_button = tk.Button(frame,
                                    text="get now",
                                    bg="gray50",
-                                   font=("Arail", 12),
+                                   font=("Arial", 12),
                                    command=lambda: get_now(model_var, ac_var, hour_var, head, frame, root))
-        get_now_button.place(relx=0.7, rely=0.7)
+        get_now_button.place(relx=0.7, rely=0.3)
         back_button = tk.Button(frame,
                                 text="back",
                                 width="15",
@@ -135,7 +141,7 @@ def check_status(root, head):
     text_to_show = ""
     index = head.customers[head.logged_in_customer_index].car_rented_id
     if index == -1:
-        text_to_show += "No vehicle Rented Yet to you!"
+        text_to_show += "No vehicle Rented to you!"
     else:
         text_to_show += "Rented vehicle -\n"
         text_to_show += "Model Name :" + head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].model
@@ -180,3 +186,39 @@ def get_now(model, ac, hour, head, frame, root):
                 messagebox.showinfo("done", "best of luck with rented vehicle!")
                 frame.destroy()
                 return
+
+def list_cars(root, head):
+    frame = tk.Frame(root,
+                     width="625",
+                     height="400",
+                     bg="purple1")
+    frame.place(relx=0.2, rely=0.2)
+    l = []
+    for i in head.availabel_cars:
+        x = [str(i.model), str(i.AC), str(i.prize), str(i.gain)]
+        if not(x in l):
+            l.append(x)
+    length = len(l)
+    if length > 10:
+        length *= 0
+        length += 10
+    y=0
+    lb = tk.Label(frame, text="model                                    AC",
+                  width="30", font=("Arial", 10))
+    lb.place(relx=0, rely=y)
+    y += 0.07
+    for i in range(length):
+       lb = tk.Label(frame, width="30",
+                     text=l[i][0]+"                                  "+l[i][1],
+                     font=("Arial", 10))
+       lb.place(relx=0, rely=y)
+       y += 0.07
+
+
+    back_button = tk.Button(frame,
+                            text="back",
+                            width="15",
+                            bg="gray60",
+                            font=("Arial", 12),
+                            command=lambda: frame.destroy())
+    back_button.place(relx=0.4, rely=0.9)
