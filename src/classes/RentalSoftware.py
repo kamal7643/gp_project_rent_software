@@ -2,6 +2,8 @@ from src.classes.vehical import *
 from src.classes.customer import *
 import pandas as pd
 import tkinter as tk
+from tkinter import messagebox
+import datetime
 
 
 class RentalSoftware:
@@ -179,9 +181,20 @@ class RentalSoftware:
         return True
 
     def get_charge(self, tem, hour, km):
+        curr_time = datetime.datetime.now()
+        if hour < 4:
+            hour = 4
         if tem.per_hour > tem.per_km:
+            if curr_time.hour >=3 or curr_time.hour <=6:
+                if tem.AC == "yes":
+                    return int(tem.per_hour*hour*(3/2)+150)
+                return tem.per_hour*hour+150
             return tem.per_hour*hour
         else:
+            if curr_time.hour >=3 or curr_time.hour <=6:
+                if tem.AC == "yes":
+                    return int(tem.per_km*km*(3/2)+150)
+                return tem.per_km*km+150
             return tem.per_km*km
 
     def pay(self, amount, root):
@@ -198,9 +211,9 @@ class RentalSoftware:
         else:
             amount *= -1
             text += "refund"
-        label = tk.Label(frame, text=str(float(amount))+"RS")
+        label = tk.Label(frame, text=str(float(amount))+"RS", font=("Arail", 12))
         label.place(relx=0.2, rely=0.3)
-        button = tk.Button(frame, text=text, command=lambda: frame.destroy())
+        button = tk.Button(frame, text=text ,font=("Arail", 12), command=lambda: self.payment_done(frame))
         button.place(relx=0.45, rely=0.3)
         return True
 
@@ -218,3 +231,7 @@ class RentalSoftware:
         self.customers[self.logged_in_customer_index].rented_car_index_second = -1
         self.customers[self.logged_in_customer_index].time_car_rented = 0
         self.customers[self.logged_in_customer_index].time_to_return = 0
+
+    def payment_done(self, frame):
+        messagebox.showinfo("Payment", "Transfer successfull!")
+        frame.destroy()

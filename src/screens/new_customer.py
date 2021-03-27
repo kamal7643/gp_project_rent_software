@@ -60,39 +60,47 @@ def new_customer(root, head):
                     if en4.get() != "":
                         if en5.get() != "":
                             if en6.get() != "":
-                                temp.profile(en1.get(),
-                                             en2.get(),
-                                             en3.get(),
-                                             en4.get(),
-                                             -1,
-                                             -1,
-                                             -1,
-                                             0,
-                                             0,
-                                             0,
-                                             en5.get(),
-                                             en6.get())
-                                if not head.is_double_customer(temp):
-                                    if head.is_possible_username(temp.username):
-                                        if en5.get() != en6.get():
-                                            head.customers.append(temp)
-                                            head.history.append("Account created")
-                                            messagebox.showinfo("Account", "Your account has been created!")
-                                            head.logged_in_customer = "yes"
-                                            head.customer_id = temp.id
-                                            head.logged_in_customer_index = len(head.customers)-1
-                                            button.button(root, head, "customer")
+                                if len(en2.get()) == 10 and en2.get().isdigit():
+                                    if len(en3.get())>13 and en3.get()[len(en3.get())-10:] == "@gmail.com":
+                                        temp.profile(en1.get(),
+                                                    en2.get(),
+                                                    en3.get(),
+                                                    en4.get(),
+                                                    -1,
+                                                    -1,
+                                                    -1,
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    en5.get(),
+                                                    en6.get())
+                                        if not head.is_double_customer(temp):
+                                            if head.is_possible_username(temp.username):
+                                                if en5.get() != en6.get():
+                                                    head.customers.append(temp)
+                                                    head.history.append("Account created")
+                                                    messagebox.showinfo("Account", "Your account has been created!")
+                                                    head.logged_in_customer = "yes"
+                                                    head.customer_id = temp.id
+                                                    head.logged_in_customer_index = len(head.customers)-1
+                                                    button.button(root, head, "customer")
+                                                else:
+                                                    messagebox.showerror("Fill up", "password can't be username!")
+                                                    en6.delete(0, tk.END)
+                                            else:
+                                                messagebox.showerror("Account", "choose a different username")
+                                                en5.delete(0, tk.END)
                                         else:
-                                            messagebox.showerror("Fill up", "password can't be username!")
-                                            en6.delete(0, tk.END)
+                                            messagebox.showerror("double", "Another account with same details exits")
+                                            en1.delete(0, tk.END)
+                                            en2.delete(0, tk.END)
+                                            en3.delete(0, tk.END)
                                     else:
-                                        messagebox.showerror("Account", "choose a different username")
-                                        en5.delete(0, tk.END)
+                                        messagebox.showerror("Invalid input", "Invalid Gmail id (ends with @gmail.com)!")
+                                        en3.delete(0, tk.END)
                                 else:
-                                    messagebox.showerror("double", "Another account with same details exits")
-                                    en1.delete(0, tk.END)
+                                    messagebox.showerror("Invalid input", "Invalid Contact Number !")
                                     en2.delete(0, tk.END)
-                                    en3.delete(0, tk.END)
                             else:
                                 messagebox.showinfo("Fill up", "make a protective password")
                         else:

@@ -79,7 +79,6 @@ def return_function(frame, head, root):
     head.free_customer(tem)
     if head.pay(valid_charge, root):
         head.customers[head.logged_in_customer_index].payment = 0
-        messagebox.showinfo("payment", "Your payment is done!")
     else:
         head.customers[head.logged_in_customer_index].payment = valid_charge
         messagebox.showinfo("payment", "Your payment is still pending!")

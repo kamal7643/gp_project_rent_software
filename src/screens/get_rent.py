@@ -168,24 +168,24 @@ def check_status(root, head):
 def get_now(model, ac, hour, head, frame, root):
     for i in range(len(head.all_cars)):
         tem = head.all_cars[i]
-        if tem.model == model.get() and tem.AC == ac.get() and tem.available == "yes":
-            amount = int(head.get_charge(tem, hour.get(), km=0))
-            if head.pay(amount/2, root):
-                head.customers[head.logged_in_customer_index].payment += amount-amount/2
-                tem.advance = amount/2
-                tem.rented_for = hour.get()
-                head.customers[head.logged_in_customer_index].car_rented_id = tem.id
-                head.customers[head.logged_in_customer_index].rented_car_index = i
-                head.customers[head.logged_in_customer_index].rented_car_index_second = len(head.on_rent_cars)
-                head.customers[head.logged_in_customer_index].time_car_rented = hour.get()
-                head.remove_from_available(tem)
-                tem.available = "no"
-                tem.times_rented += 1
-                tem.rented_time = time.time()
-                head.add_to_on_rent(tem)
-                messagebox.showinfo("done", "best of luck with rented vehicle!")
-                frame.destroy()
-                return
+        if messagebox.askquestion("Are You Sure?","Charge will be ("+str(head.get_charge(tem, hour.get(), km=0))+")")=="yes":
+            if tem.model == model.get() and tem.AC == ac.get() and tem.available == "yes":
+                amount = int(head.get_charge(tem, hour.get(), km=0))
+                if head.pay(amount/2, root):
+                    head.customers[head.logged_in_customer_index].payment += amount-amount/2
+                    tem.advance = amount/2
+                    tem.rented_for = hour.get()
+                    head.customers[head.logged_in_customer_index].car_rented_id = tem.id
+                    head.customers[head.logged_in_customer_index].rented_car_index = i
+                    head.customers[head.logged_in_customer_index].rented_car_index_second = len(head.on_rent_cars)
+                    head.customers[head.logged_in_customer_index].time_car_rented = hour.get()
+                    head.remove_from_available(tem)
+                    tem.available = "no"
+                    tem.times_rented += 1
+                    tem.rented_time = time.time()
+                    head.add_to_on_rent(tem)
+                    frame.destroy()
+                    return
 
 def list_cars(root, head):
     frame = tk.Frame(root,
