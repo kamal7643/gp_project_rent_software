@@ -12,13 +12,10 @@ from src.screens import login_customer
 from src.screens import customer
 from src.screens import new_customer
 from src import do_exit
-import winsound
 import os
 
 
 def button(root, head, f_name):
-    if head.sound == "on":
-        winsound.Beep(600, 100)
     if f_name == "about":
         about.about(root, head)
     elif f_name == "admin":

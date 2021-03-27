@@ -148,9 +148,9 @@ class RentalSoftware:
                 return True
         return False
 
-    def is_possible_password(self, password):
+    def is_possible_username(self, password):
         for i in self.customers:
-            if i.password == password:
+            if i.username == password:
                 return False
         return True
 

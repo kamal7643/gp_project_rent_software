@@ -29,7 +29,7 @@ def new_customer(root, head):
     en3 = tk.Entry(width="25", font=("Arial Bold", 12))
     en4 = tk.Entry(width="25", font=("Arial Bold", 12))
     en5 = tk.Entry(width="25", font=("Arial Bold", 12))
-    en6 = tk.Entry(width="25", font=("Arial Bold", 12))
+    en6 = tk.Entry(width="25", font=("Arial Bold", 12), show="*")
     en1.place(relx=0.4, rely=.25)
     en2.place(relx=0.4, rely=.32)
     en3.place(relx=0.4, rely=.39)
@@ -59,11 +59,13 @@ def new_customer(root, head):
                 if en3.get() != "":
                     if en4.get() != "":
                         if en5.get() != "":
-                            if en6.get != "":
+                            if en6.get() != "":
                                 temp.profile(en1.get(),
                                              en2.get(),
                                              en3.get(),
                                              en4.get(),
+                                             -1,
+                                             -1,
                                              -1,
                                              0,
                                              0,
@@ -72,15 +74,19 @@ def new_customer(root, head):
                                              en6.get())
                                 if not head.is_double_customer(temp):
                                     if head.is_possible_username(temp.username):
-                                        head.customers.append(temp)
-                                        head.history.append("Account created")
-                                        messagebox.showinfo("Account", "Your account has been created!")
-                                        head.logged_in_customer = "yes"
-                                        head.customer_id = temp.id
-                                        head.logged_in_customer_index = len(head.customers)-1
-                                        button.button(root, head, "customer")
+                                        if en5.get() != en6.get():
+                                            head.customers.append(temp)
+                                            head.history.append("Account created")
+                                            messagebox.showinfo("Account", "Your account has been created!")
+                                            head.logged_in_customer = "yes"
+                                            head.customer_id = temp.id
+                                            head.logged_in_customer_index = len(head.customers)-1
+                                            button.button(root, head, "customer")
+                                        else:
+                                            messagebox.showerror("Fill up", "password can't be username!")
+                                            en6.delete(0, tk.END)
                                     else:
-                                        messagebox.showerror("Account", "choose a different pin")
+                                        messagebox.showerror("Account", "choose a different username")
                                         en5.delete(0, tk.END)
                                 else:
                                     messagebox.showerror("double", "Another account with same details exits")

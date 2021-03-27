@@ -16,7 +16,7 @@ def main():
     root = tk.Tk()
     root.title(head.name)
     root.geometry("1100x700")
-    img = Image.open(r"src/img/bg.jfif")
+    img = Image.open(r"src/img/main_icon.jpg")
     img = ImageTk.PhotoImage(img)
     root.iconphoto(False, img)
     root.resizable(width=False, height=False)

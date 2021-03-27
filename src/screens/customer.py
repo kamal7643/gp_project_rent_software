@@ -3,6 +3,7 @@ from src.screens import login_customer
 from tkinter import messagebox
 from src import button
 import tkinter as tk
+from PIL import ImageTk, Image
 
 
 def customer(root, head):
@@ -12,6 +13,9 @@ def customer(root, head):
     else:
         print("customer")
         clear(root)
+        profile_button = tk.Button(text="profile", width="10", height="10", font=("Arial", 12),
+                                    command=lambda: profile_show(root, head))
+        profile_button.place(relx=0.04, rely=0.04)
         rent_button = tk.Button(text="rent", width="20", background="blue", font=("Arial Bold", 12),
                                 command=lambda: button.button(root, head, "get_rent"))
         return_button = tk.Button(text="return", width="20", background="blue", font=("Arial Bold", 12),
@@ -60,3 +64,17 @@ def logout(root, head):
     head.logged_in_customer = "no"
     head.customer_id = -1
     button.button(root, head, "start")
+
+def profile_show(root, head):
+    frame = tk.Frame(root, width="200", height="150", bg="purple3")
+    frame.place(relx=0.04, rely=0.1)
+    text=""
+    i = head.logged_in_customer_index
+    text+="username = "+head.customers[i].username 
+    text += "\n"
+    text += "name = "+head.customers[i].name+"\n"
+    text += "Email = "+head.customers[i].email+"\n"
+    label = tk.Label(frame, text=text, font=("Arial", 10), width="30", justify=tk.LEFT, anchor='nw', bg="purple3")
+    label.place(relx=0.01, rely=0.01)
+    back_button = tk.Button(frame, text="back", font=("Arail", 12), command= lambda: frame.destroy())
+    back_button.place(relx=0.01, rely=0.8)
