@@ -17,7 +17,7 @@ def admin_action(root, head):
     change_button = tk.Button(text="change",
                               font=("Arial Bold", 10),
                               width="10",
-                              bg="gray60",
+                              bg="purple1",
                               command=lambda: change_name(change_name_entry, root, head))
     change_button.place(relx=0.91, rely=0.05)
     handle_add_vehicle(head)
@@ -30,7 +30,7 @@ def admin_action(root, head):
     choose_button = tk.Button(text="choose", font=("Arial Bold", 10), width="10", bg="gray90",
                               command=lambda: handle_remove_vehicle(head))
     choose_button.place(relx=0.3, rely=0.25)
-    remove = tk.Button(text="remove", font=("Arial Bold", 10), width="10", bg="gray60",
+    remove = tk.Button(text="remove", font=("Arial Bold", 10), width="10", bg="purple1",
                        command=lambda: final_remove(en, head))
     remove.place(relx=0.91, rely=0.25)
     back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10),
@@ -82,7 +82,7 @@ def handle_add_vehicle(head):
     en5.place(relx=0.79, rely=0.15)
     add_button = tk.Button(text="add",
                            font=("Arial bold", 10),
-                           bg="gray60",
+                           bg="purple1",
                            width="10",
                            command=lambda: add(head, en1, en2, en3, en4, en5))
     add_button.place(relx=0.91, rely=0.15)

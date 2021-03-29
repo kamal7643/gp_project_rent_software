@@ -10,7 +10,7 @@ def login(root, head):
     frame = tk.Frame(root,
                      width="625",
                      height="400",
-                     bg="purple3")
+                     bg="midnightblue")
     frame.place(relx=0.2, rely=0.2)
     label = tk.Label(frame, text="Password :", width="12", font=("Arial", 12))
     label.place(relx=.2, rely=0.35)

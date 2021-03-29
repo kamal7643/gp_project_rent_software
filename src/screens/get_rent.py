@@ -168,9 +168,9 @@ def check_status(root, head):
 def get_now(model, ac, hour, head, frame, root):
     for i in range(len(head.all_cars)):
         tem = head.all_cars[i]
-        if messagebox.askquestion("Are You Sure?","Charge will be ("+str(head.get_charge(tem, hour.get(), km=0))+")")=="yes":
+        if messagebox.askquestion("Are You Sure?","Charge will be ("+str(head.get_charge(tem, hour.get(), km=0, at=1))+")")=="yes":
             if tem.model == model.get() and tem.AC == ac.get() and tem.available == "yes":
-                amount = int(head.get_charge(tem, hour.get(), km=0))
+                amount = int(head.get_charge(tem, hour.get(), km=0, at=1))
                 if head.pay(amount/2, root):
                     head.customers[head.logged_in_customer_index].payment += amount-amount/2
                     tem.advance = amount/2

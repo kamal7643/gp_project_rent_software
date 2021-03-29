@@ -180,22 +180,37 @@ class RentalSoftware:
         self.on_rent_cars.append(tem)
         return True
 
-    def get_charge(self, tem, hour, km):
+    def get_charge(self, tem, hour, km, at):
         curr_time = datetime.datetime.now()
         if hour < 4:
             hour = 4
-        if tem.per_hour > tem.per_km:
-            if curr_time.hour >=3 or curr_time.hour <=6:
-                if tem.AC == "yes":
-                    return int(tem.per_hour*hour*(3/2)+150)
-                return tem.per_hour*hour+150
-            return tem.per_hour*hour
+        if at == 1:
+            if tem.per_hour > tem.per_km:
+                if curr_time.hour >=18 or curr_time.hour <=6:
+                    if tem.AC == "yes":
+                        return int(tem.per_hour*hour*(3/2)+150)
+                    return tem.per_hour*hour+150
+                return tem.per_hour*hour
+            else:
+                if curr_time.hour >=3 or curr_time.hour <=6:
+                    if tem.AC == "yes":
+                        return int(tem.per_km*km*(3/2)+150)
+                    return tem.per_km*km+150
+                return tem.per_km*km
         else:
-            if curr_time.hour >=3 or curr_time.hour <=6:
-                if tem.AC == "yes":
-                    return int(tem.per_km*km*(3/2)+150)
-                return tem.per_km*km+150
-            return tem.per_km*km
+            if tem.per_hour > tem.per_km:
+                if curr_time.hour >= 18 or curr_time.hour <= 6 or hour >=12:
+                    if tem.AC == "yes":
+                        return int(tem.per_hour*hour*(3/2)+150)
+                    return tem.per_hour*hour + 150
+                return tem.per_hour*hour
+            else:
+                if curr_time.hour >= 18 or curr_time.hour <= 6 or hour >=12:
+                    if tem.AC == "yes":
+                        return int(tem.per_km*km*(3/2)+150)
+                    return tem.per_km*km+150
+                return tem.per_km*km
+
 
     def pay(self, amount, root):
         if amount == 0:

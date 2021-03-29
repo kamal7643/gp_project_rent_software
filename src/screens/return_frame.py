@@ -36,7 +36,7 @@ def return_frame(root, head):
                               bg="gray60",
                               font=("Arial", 12),
                               command=lambda: return_function(frame, head, root))
-    return_button.place(relx=0.7, rely=0.7)
+    return_button.place(relx=0.7, rely=0.01)
     back_button = tk.Button(frame,
                             text="back",
                             width="15",
@@ -69,7 +69,7 @@ def return_function(frame, head, root):
     time_used = time.time()-tem.rented_time
     time_used /= 3600
     time_used = int(time_used)
-    valid_charge = head.get_charge(tem, time_used, km=0)
+    valid_charge = head.get_charge(tem, time_used, km=0, at=2)
     tem.gain += valid_charge
     tem.rented_for = 0
     tem.rented_time = 0
