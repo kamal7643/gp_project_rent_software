@@ -65,22 +65,24 @@ def return_frame(root, head):
 
 
 def return_function(frame, head, root):
-    tem = head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index]
-    time_used = time.time()-tem.rented_time
-    time_used /= 3600
-    time_used = int(time_used)
-    valid_charge = head.get_charge(tem, time_used, km=0, at=2)
-    tem.gain += valid_charge
-    tem.rented_for = 0
-    tem.rented_time = 0
-    valid_charge -= tem.advance
-    tem.advance = 0
-    head.return_vehicle(tem)
-    head.free_customer(tem)
-    if head.pay(valid_charge, root):
-        head.customers[head.logged_in_customer_index].payment = 0
+    if head.customers[head.logged_in_customer_index].rented_car_index != -1:
+        tem = head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index]
+        time_used = time.time()-tem.rented_time
+        time_used /= 3600
+        time_used = int(time_used)
+        valid_charge = head.get_charge(tem, time_used, km=0, at=2)
+        tem.gain += valid_charge
+        tem.rented_for = 0
+        tem.rented_time = 0
+        valid_charge -= tem.advance
+        tem.advance = 0
+        head.return_vehicle(tem)
+        head.free_customer(tem)
+        if head.pay(valid_charge, root):
+            head.customers[head.logged_in_customer_index].payment = 0
+        else:
+            head.customers[head.logged_in_customer_index].payment = valid_charge
+            messagebox.showinfo("payment", "Your payment is still pending!")
+        frame.destroy()
     else:
-        head.customers[head.logged_in_customer_index].payment = valid_charge
-        messagebox.showinfo("payment", "Your payment is still pending!")
-    print("done")
-    frame.destroy()
+        messagebox.showinfo("warning", "You don't have any car to return")
