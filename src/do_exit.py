@@ -2,14 +2,20 @@ from src import update_cache
 from tkinter import messagebox
 
 
+# exit application
 def do_exit(root, head):
     if messagebox.askquestion("Access Required", "Are you sure to quit?") == 'yes':
-        store_last(head)
+        # update owner and history related files
+        update_last(head)
+        # update excel files of cars and customers
         update_cache.update_cache(head)
+        # quit the application(master window)
         quit()
 
 
-def store_last(head):
+# function to update owner file and history file
+def update_last(head):
+    # update owner file
     f = open("cache\storage.txt","w")
     f.write(head.name+"\n")
     f.write(head.owner_name+"\n")
@@ -19,6 +25,7 @@ def store_last(head):
     f.write(head.bg_file_name+"\n")
     f.write(head.password+"\n")
     f.close()
+    # update history file
     f = open("cache\history.txt", "w")
     for i in head.history:
         f.write(i+"\n")

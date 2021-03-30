@@ -2,9 +2,12 @@ import pandas as pds
 import xlsxwriter as xw
 
 
+# updating excel files of cars and customers
 def update_cache(head):
+    # update car's file
     final = xw.Workbook('./cache/cars.xlsx')
     wsh = final.add_worksheet()
+    # header
     wsh.write(0, 0, 'id')
     wsh.write(0, 1, 'model')
     wsh.write(0, 2, 'repair')
@@ -22,6 +25,7 @@ def update_cache(head):
     wsh.write(0, 14, 'advance')
     wsh.write(0, 15, 'per_hour')
     wsh.write(0, 16, 'per_km')
+    # body
     for i in range(len(head.all_cars)):
         wsh.write(i+1, 0, head.all_cars[i].id)
         wsh.write(i+1, 1, head.all_cars[i].model)
@@ -41,8 +45,10 @@ def update_cache(head):
         wsh.write(i+1, 15, head.all_cars[i].per_hour)
         wsh.write(i+1, 16, head.all_cars[i].per_km)
     final.close()
+    # update customer's file
     final = xw.Workbook('./cache/customers.xlsx')
     wsh = final.add_worksheet()
+    # header
     wsh.write(0, 0, 'id')
     wsh.write(0, 1, 'name')
     wsh.write(0, 2, 'phone_number')
@@ -56,6 +62,7 @@ def update_cache(head):
     wsh.write(0, 10, 'payment')
     wsh.write(0, 11, 'username')
     wsh.write(0, 12, 'password')
+    # body
     for i in range(len(head.customers)):
         wsh.write(i + 1, 0, head.customers[i].id)
         wsh.write(i + 1, 1, head.customers[i].name)

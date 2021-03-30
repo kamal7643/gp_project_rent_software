@@ -15,6 +15,7 @@ from src import do_exit
 import os
 
 
+# redirecting 
 def button(root, head, f_name):
     if f_name == "about":
         about.about(root, head)
