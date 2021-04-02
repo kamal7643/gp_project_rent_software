@@ -223,7 +223,6 @@ def final_add(head, en1, en2, en3, en4, en5):
         # clear entry boxes
         en1.delete(0, tk.END)
         en2.delete(0, tk.END)
-        en3.delete(0, tk.END)
         en4.delete(0, tk.END)
         en5.delete(0, tk.END)
 
