@@ -14,43 +14,46 @@ def admin_action(root, head):
     clear.clear(root)
     change_name_label = tk.Label(text="change name :-     ",
                                  width="15",
-                                 font=("Arial Bold", 10))
+                                 bg="deep sky blue",
+                                 font=("Arial", 12))
     change_name_label.place(relx=0.0, rely=0.05)
-    change_name_entry = tk.Entry(width="20", font=("Arial bold", 12))
-    change_name_entry.place(relx=0.10, rely=0.05)
+    change_name_entry = tk.Entry(width="20", font=("Arial", 12))
+    change_name_entry.place(relx=0.15, rely=0.05)
     change_button = tk.Button(text="change",
-                              font=("Arial Bold", 10),
+                              font=("Arial", 12),
                               width="10",
                               bg="purple1",
                               command=lambda: change_name(change_name_entry, root, head))
-    change_button.place(relx=0.91, rely=0.05)
+    change_button.place(relx=0.9, rely=0.05)
     # add vehicle portal
-    handle_add_vehicle(head)
+    handle_add_vehicle(head, root)
     label = tk.Label(text="Remove Vehicle :",
-                     font=("Arial Bold", 10), width="15")
-    label.place(relx=0.0, rely=0.25)
-    lid = tk.Label(text="ID : ", font=("Arial Bold", 10), width="10")
-    lid.place(relx=0.10, rely=0.25)
-    en = tk.Entry(width="12", font=("Arial Bold", 10))
-    en.place(relx=0.18, rely=0.25)
+                     bg="deep sky blue",
+                     font=("Arial", 12), width="15")
+    label.place(relx=0.0, rely=0.5)
+    lid = tk.Label(text="ID : ", font=("Arial", 12),
+                    bg="deep sky blue", width="10")
+    lid.place(relx=0.15, rely=0.5)
+    en = tk.Entry(width="12", font=("Arial", 12))
+    en.place(relx=0.25, rely=0.5)
     # show cars availabe for remove action
-    choose_button = tk.Button(text="choose", font=("Arial Bold", 10), width="10", bg="gray90",
+    choose_button = tk.Button(text="choose", font=("Arial", 12), width="10", bg="gray60",
                               command=lambda: handle_remove_vehicle(head))
-    choose_button.place(relx=0.3, rely=0.25)
+    choose_button.place(relx=0.4, rely=0.5)
     # remove action
-    remove = tk.Button(text="remove", font=("Arial Bold", 10), width="10", bg="purple1",
+    remove = tk.Button(text="remove", font=("Arial", 12), width="10", bg="purple1",
                        command=lambda: final_remove(en, head))
-    remove.place(relx=0.91, rely=0.25)
+    remove.place(relx=0.9, rely=0.5)
     # back to admin home page
-    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10),
+    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial", 10),
                             command=lambda: button.button(root, head, "admin"))
     back_button.place(relx=0.0, rely=0.9)
     # exit application
-    exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10),
+    exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial", 10),
                             command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)
     # go to landing page of the application
-    home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
+    home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial", 10),
                             command=lambda: button.button(root, head, "start"))
     home_button.place(relx=0.45, rely=0.9)
 
@@ -72,42 +75,50 @@ def change_name(entry, root, head):
 
 
 # handling add vehicle action
-def handle_add_vehicle(head):
-    label1 = tk.Label(text="ADD Vehicle:- ", width="12",
-                      font=("Arial Bold", 10))
-    label2 = tk.Label(text="model name:", width="12",
-                      bg="gray80", font=("Arial Bold", 10))
-    label3 = tk.Label(text="prize :", width="12",
-                      bg="gray80", font=("Arial Bold", 10))
-    label4 = tk.Label(text="AC(yes/no):", width="12",
-                      bg="gray80", font=("Arial Bold", 10))
-    label5 = tk.Label(text="per hour:", width="12",
-                      bg="gray80", font=("Arial Bold", 10))
-    label6 = tk.Label(text="per K.M.:", width="12",
-                      bg="gray80", font=("Arial Bold", 10))
+def handle_add_vehicle(head, root):
+    frame = tk.Frame(root,
+                     width="800",
+                     height="200",
+                     bg="deep sky blue")
+    frame.place(relx=0.15,rely=0.15)
+    label1 = tk.Label(root, text="ADD Vehicle:- ", width="12",
+                      bg="deep sky blue",
+                      font=("Arial", 12))
+    label2 = tk.Label(frame,text="model name:", width="12",
+                      bg="gray80", font=("Arial", 12))
+    label3 = tk.Label(frame,text="prize :", width="12",
+                      bg="gray80", font=("Arial", 12))
+    label4 = tk.Label(frame, text="AC:", width="12",
+                      bg="gray80", font=("Arial", 12))
+    label5 = tk.Label(frame, text="per hour:", width="12",
+                      bg="gray80", font=("Arial", 12))
+    label6 = tk.Label(frame, text="per K.M.:", width="12",
+                      bg="gray80", font=("Arial", 12))
     label1.place(relx=0.00, rely=0.15)
-    label2.place(relx=0.10, rely=0.15)
+    label2.place(relx=0.25, rely=0.00)
     label3.place(relx=0.25, rely=0.15)
-    label4.place(relx=0.40, rely=0.15)
-    label5.place(relx=0.55, rely=0.15)
-    label6.place(relx=0.70, rely=0.15)
+    label4.place(relx=0.25, rely=0.30)
+    label5.place(relx=0.25, rely=0.45)
+    label6.place(relx=0.25, rely=0.60)
     # entry boxes for adding new car
-    en1 = tk.Entry(font=("Arial Bold", 12), width="8")
-    en1.place(relx=0.19, rely=0.15)
-    en2 = tk.Entry(font=("Arial Bold", 12), width="8")
-    en2.place(relx=0.34, rely=0.15)
-    en3 = tk.Entry(font=("Arial Bold", 12), width="8")
-    en3.place(relx=0.49, rely=0.15)
-    en4 = tk.Entry(font=("Arial Bold", 12), width="8")
-    en4.place(relx=0.64, rely=0.15)
-    en5 = tk.Entry(font=("Arial Bold", 12), width="8")
-    en5.place(relx=0.79, rely=0.15)
-    add_button = tk.Button(text="add",
-                           font=("Arial bold", 10),
+    en1 = tk.Entry(frame, font=("Arial", 12), width="15")
+    en1.place(relx=0.5, rely=0.00)
+    en2 = tk.Entry(frame, font=("Arial", 12), width="15")
+    en2.place(relx=0.5, rely=0.15)
+    ac_var = tk.StringVar(frame)
+    ac_choices = ['yes','no']
+    en3 = tk.OptionMenu(frame, ac_var, *ac_choices)
+    en3.place(relx=0.5, rely=0.30)
+    en4 = tk.Entry(frame, font=("Arial", 12), width="15")
+    en4.place(relx=0.5, rely=0.45)
+    en5 = tk.Entry(frame, font=("Arial", 12), width="15")
+    en5.place(relx=0.5, rely=0.60)
+    add_button = tk.Button(frame, text="add",
+                           font=("Arial", 12),
                            bg="purple1",
                            width="10",
-                           command=lambda: add(head, en1, en2, en3, en4, en5))
-    add_button.place(relx=0.91, rely=0.15)
+                           command=lambda: add(head, en1, en2, ac_var, en4, en5))
+    add_button.place(relx=0.4, rely=0.85)
 
 
 # validating add vehicle data
@@ -164,7 +175,7 @@ def add(head, en1, en2, en3, en4, en5):
                         "Empty Input", "Enter float rate per hour")
             else:
                 messagebox.showinfo(
-                    "Empty Input", "Enter yes if vehicle has AC or no")
+                    "Empty Input", "choose AC status yes or no")
         else:
             messagebox.showinfo(
                 "Empty Input", "Enter prize of vehicle (integer)")
@@ -228,7 +239,7 @@ def handle_remove_vehicle(head):
     # scrollbar to secondary window
     sc = tk.Scrollbar(master)
     sc.pack(side=tk.RIGHT, fill=tk.Y)
-    mylist = tk.Listbox(master, font=("Arial Bold", 12),
+    mylist = tk.Listbox(master, font=("Arial", 12),
                         width="100", yscrollcommand=sc.set)
     for i in head.availabel_cars:
         mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
