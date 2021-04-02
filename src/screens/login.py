@@ -19,7 +19,7 @@ def login(root, head):
     en = tk.Entry(frame, width="12", font=("Arial", 12), show="*")
     en.place(relx=0.45, rely=0.35)
     en.focus()
-    # cancel login 
+    # cancel login
     back_button = tk.Button(frame, text="back", width="12", background="gray80", font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
     back_button.place(relx=0.0, rely=0.9)

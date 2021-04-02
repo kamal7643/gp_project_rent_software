@@ -50,12 +50,13 @@ def retquest_to_login(root, head, en0, en):
     if en0.get() != "" and en.get() != "":
 
         # login data match with existing data
-        if head.is_customer(en0.get(),en.get()):
+        if head.is_customer(en0.get(), en.get()):
 
             # go to customer home page
             button.button(root, head, "customer")
         else:
-            messagebox.showerror("Access denied", "Incorrect Username or password!")
+            messagebox.showerror(
+                "Access denied", "Incorrect Username or password!")
             en.delete(0, tk.END)
             en0.delete(0, tk.END)
     else:

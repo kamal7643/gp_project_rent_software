@@ -15,13 +15,15 @@ def main():
     # getting owner's information from cache files
     name, owner, owner_ph, helpline, sound, bg_file_name, pin = get_last()
     # here is the system object named head
-    head = RentalSoftware(name, owner, owner_ph, helpline, sound, bg_file_name, pin)
+    head = RentalSoftware(name, owner, owner_ph, helpline,
+                          sound, bg_file_name, pin)
     # master window
     root = tk.Tk()
     root.title(head.name)
     root.geometry("1100x700")
     # adding icon to master window
-    img = ImageTk.PhotoImage(Image.open(r"src/img/bg.png").resize((1200,1000)))
+    img = ImageTk.PhotoImage(Image.open(
+        r"src/img/bg.png").resize((1200, 1000)))
     root.iconphoto(False, img)
     # fix size of master window
     root.resizable(width=False, height=False)

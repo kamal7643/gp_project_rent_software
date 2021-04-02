@@ -9,7 +9,8 @@ def setting(root, head):
     sound_label.place(relx=0.0, rely=0.02)
     v = tk.StringVar()
     v.set("on")
-    sound_button = tk.Checkbutton(root, text="on", variable=v, onvalue="on", offvalue="off")
+    sound_button = tk.Checkbutton(
+        root, text="on", variable=v, onvalue="on", offvalue="off")
     sound_button.place(relx=0.15, rely=0.02)
     back_button = tk.Button(text="back",
                             width="12",

@@ -29,7 +29,8 @@ def get_rent(root, head):
                             font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "customer"))
     back_button.place(relx=0.0, rely=0.9)
-    exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10), command=lambda: button.button(root, head, "do_exit"))
+    exit_button = tk.Button(text="exit", width="12", background="gray80", font=(
+        "Arial Bold", 10), command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)
     home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
@@ -144,10 +145,14 @@ def check_status(root, head):
         text_to_show += "No vehicle Rented to you!"
     else:
         text_to_show += "Rented vehicle -\n"
-        text_to_show += "Model Name :" + head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].model
-        text_to_show += "\nAC: "+head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].AC
-        text_to_show += "\nRented for :" + str(head.customers[head.logged_in_customer_index].time_car_rented)+"hours"
-        text_to_show += "\nPayment :" + str(head.customers[head.logged_in_customer_index].payment)
+        text_to_show += "Model Name :" + \
+            head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].model
+        text_to_show += "\nAC: " + \
+            head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].AC
+        text_to_show += "\nRented for :" + \
+            str(head.customers[head.logged_in_customer_index].time_car_rented)+"hours"
+        text_to_show += "\nPayment :" + \
+            str(head.customers[head.logged_in_customer_index].payment)
     label = tk.Label(frame,
                      text=text_to_show,
                      width="50",
@@ -171,7 +176,7 @@ def get_now(model, ac, hour, head, frame, root):
     for i in range(len(head.all_cars)):
         tem = head.all_cars[i]
         if tem.model == model.get() and tem.AC == ac.get() and tem.available == "yes":
-            if messagebox.askquestion("Are You Sure?","Charge will be ("+str(head.get_charge(tem, hour.get(), km=0, at=1))+")")=="yes":
+            if messagebox.askquestion("Are You Sure?", "Charge will be ("+str(head.get_charge(tem, hour.get(), km=0, at=1))+")") == "yes":
                 amount = int(head.get_charge(tem, hour.get(), km=0, at=1))
                 if head.pay(amount/2, root):
                     head.customers[head.logged_in_customer_index].payment += amount-amount/2
@@ -179,8 +184,10 @@ def get_now(model, ac, hour, head, frame, root):
                     tem.rented_for = hour.get()
                     head.customers[head.logged_in_customer_index].car_rented_id = tem.id
                     head.customers[head.logged_in_customer_index].rented_car_index = i
-                    head.customers[head.logged_in_customer_index].rented_car_index_second = len(head.on_rent_cars)
-                    head.customers[head.logged_in_customer_index].time_car_rented = hour.get()
+                    head.customers[head.logged_in_customer_index].rented_car_index_second = len(
+                        head.on_rent_cars)
+                    head.customers[head.logged_in_customer_index].time_car_rented = hour.get(
+                    )
                     head.remove_from_available(tem)
                     tem.available = "no"
                     tem.times_rented += 1
@@ -189,6 +196,7 @@ def get_now(model, ac, hour, head, frame, root):
                     frame.destroy()
                     return
     messagebox.showerror("not available", "please choose other vehicle")
+
 
 def list_cars(root, head):
     frame = tk.Frame(root,
@@ -205,18 +213,17 @@ def list_cars(root, head):
     if length > 10:
         length *= 0
         length += 10
-    y=0
+    y = 0
     lb = tk.Label(frame, text="model                                    AC",
                   width="30", font=("Arial", 10))
     lb.place(relx=0, rely=y)
     y += 0.07
     for i in range(length):
-       lb = tk.Label(frame, width="30",
-                     text=l[i][0]+"                                  "+l[i][1],
-                     font=("Arial", 10))
-       lb.place(relx=0, rely=y)
-       y += 0.07
-
+        lb = tk.Label(frame, width="30",
+                      text=l[i][0]+"                                  "+l[i][1],
+                      font=("Arial", 10))
+        lb.place(relx=0, rely=y)
+        y += 0.07
 
     back_button = tk.Button(frame,
                             text="back",

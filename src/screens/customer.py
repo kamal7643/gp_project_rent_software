@@ -6,6 +6,8 @@ import tkinter as tk
 from PIL import ImageTk, Image
 
 # customer home page
+
+
 def customer(root, head):
     # if customer not logged in
     if head.logged_in_customer != "yes":
@@ -17,7 +19,7 @@ def customer(root, head):
 
         # profile of cutomer
         profile_button = tk.Button(text="profile", width="10", font=("Arial", 12),
-                                    command=lambda: profile_show(root, head))
+                                   command=lambda: profile_show(root, head))
         profile_button.place(relx=0.01, rely=0.01)
 
         # go to rent page
@@ -60,7 +62,7 @@ def customer(root, head):
 def delete_ac(head, root):
     g = head.get_customer(head.customer_id)
     if g:
-        
+
         # if current logged in account not connected with any car and payment is done
         if g.car_rented_id == -1 and g.payment == 0:
             if messagebox.askquestion("Are You Sure?", "Delete this Account!") == "yes":
@@ -72,15 +74,19 @@ def delete_ac(head, root):
                     head.customer_id = -1
                     button.button(root, head, "start")
                 else:
-                    messagebox.showerror("Error", "Facing some error while deleting account")
+                    messagebox.showerror(
+                        "Error", "Facing some error while deleting account")
             else:
                 print("here")
         else:
-            messagebox.showerror("Error", "You can not delete account without done payment")
+            messagebox.showerror(
+                "Error", "You can not delete account without done payment")
     else:
         messagebox.showerror("Error", "please restart software")
 
 # logged out current logged in accout of customer
+
+
 def logout(root, head):
     head.logged_in_customer = "no"
     head.customer_id = -1
@@ -91,14 +97,16 @@ def logout(root, head):
 def profile_show(root, head):
     frame = tk.Frame(root, width="225", height="150", bg="purple")
     frame.place(relx=0.04, rely=0.1)
-    text=""
+    text = ""
     i = head.logged_in_customer_index
-    text+="username = "+head.customers[i].username 
+    text += "username = "+head.customers[i].username
     text += "\n"
     text += "name = "+head.customers[i].name+"\n"
     text += "Email = "+head.customers[i].email+"\n"
     text = text.replace("@gmail.com", " ")
-    label = tk.Label(frame, text=text, font=("Arial", 10), width="30", justify=tk.LEFT, anchor='nw', bg="purple")
+    label = tk.Label(frame, text=text, font=("Arial", 10),
+                     width="30", justify=tk.LEFT, anchor='nw', bg="purple")
     label.place(relx=0.01, rely=0.01)
-    back_button = tk.Button(frame, text="back", font=("Arail", 12), command= lambda: frame.destroy())
+    back_button = tk.Button(frame, text="back", font=(
+        "Arail", 12), command=lambda: frame.destroy())
     back_button.place(relx=0.01, rely=0.8)

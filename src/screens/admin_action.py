@@ -26,7 +26,8 @@ def admin_action(root, head):
     change_button.place(relx=0.91, rely=0.05)
     # add vehicle portal
     handle_add_vehicle(head)
-    label = tk.Label(text="Remove Vehicle :", font=("Arial Bold", 10), width="15")
+    label = tk.Label(text="Remove Vehicle :",
+                     font=("Arial Bold", 10), width="15")
     label.place(relx=0.0, rely=0.25)
     lid = tk.Label(text="ID : ", font=("Arial Bold", 10), width="10")
     lid.place(relx=0.10, rely=0.25)
@@ -72,12 +73,18 @@ def change_name(entry, root, head):
 
 # handling add vehicle action
 def handle_add_vehicle(head):
-    label1 = tk.Label(text="ADD Vehicle:- ", width="12", font=("Arial Bold", 10))
-    label2 = tk.Label(text="model name:", width="12", bg="gray80", font=("Arial Bold", 10))
-    label3 = tk.Label(text="prize :", width="12", bg="gray80", font=("Arial Bold", 10))
-    label4 = tk.Label(text="AC(yes/no):", width="12", bg="gray80", font=("Arial Bold", 10))
-    label5 = tk.Label(text="per hour:", width="12", bg="gray80", font=("Arial Bold", 10))
-    label6 = tk.Label(text="per K.M.:", width="12", bg="gray80", font=("Arial Bold", 10))
+    label1 = tk.Label(text="ADD Vehicle:- ", width="12",
+                      font=("Arial Bold", 10))
+    label2 = tk.Label(text="model name:", width="12",
+                      bg="gray80", font=("Arial Bold", 10))
+    label3 = tk.Label(text="prize :", width="12",
+                      bg="gray80", font=("Arial Bold", 10))
+    label4 = tk.Label(text="AC(yes/no):", width="12",
+                      bg="gray80", font=("Arial Bold", 10))
+    label5 = tk.Label(text="per hour:", width="12",
+                      bg="gray80", font=("Arial Bold", 10))
+    label6 = tk.Label(text="per K.M.:", width="12",
+                      bg="gray80", font=("Arial Bold", 10))
     label1.place(relx=0.00, rely=0.15)
     label2.place(relx=0.10, rely=0.15)
     label3.place(relx=0.25, rely=0.15)
@@ -118,7 +125,7 @@ def add(head, en1, en2, en3, en4, en5):
                             part = en4.get()
                             partition = part.partition('.')
                             if (partition[0].isdigit() and partition[1] == '.' and partition[2].isdigit()) or (partition[0] == '' and partition[1] == '.' and partition[2].isdigit()) or (partition[0].isdigit() and partition[1] == '.' and partition[2] == ''):
-                            #    validating per km charge
+                                #    validating per km charge
                                 part = en5.get()
                                 partition = part.partition('.')
                                 if (partition[0].isdigit() and partition[1] == '.' and partition[2].isdigit()) or (partition[0] == '' and partition[1] == '.' and partition[2].isdigit()) or (partition[0].isdigit() and partition[1] == '.' and partition[2] == ''):
@@ -126,41 +133,52 @@ def add(head, en1, en2, en3, en4, en5):
                                     if en3.get() == "yes" or en3.get() == "no":
                                         # validating model name for the car
                                         if len(en1.get()) <= 3:
-                                            messagebox.showinfo("Error", "model name should contains more than 2 char")
+                                            messagebox.showinfo(
+                                                "Error", "model name should contains more than 2 char")
                                         else:
                                             if messagebox.askquestion("Access Required", "Are You Sure to Add vehicle ?") == "yes":
                                                 # finally add new car
-                                                final_add(head, en1, en2, en3, en4, en5)
+                                                final_add(
+                                                    head, en1, en2, en3, en4, en5)
                                             else:
                                                 print("Action Canceled!")
-                                                messagebox.showinfo("Action", "Action Canceled !")
+                                                messagebox.showinfo(
+                                                    "Action", "Action Canceled !")
                                     else:
-                                        messagebox.showinfo("Error", "Enter yes if vehicle has AC else no")
+                                        messagebox.showinfo(
+                                            "Error", "Enter yes if vehicle has AC else no")
                                 else:
-                                    messagebox.showinfo("Error", "per K.M. rate should be integer")
+                                    messagebox.showinfo(
+                                        "Error", "per K.M. rate should be integer")
                             else:
-                                messagebox.showerror("Error", "per hour should be float")
+                                messagebox.showerror(
+                                    "Error", "per hour should be float")
                         else:
-                            messagebox.showerror("Error", "prize should be integer")
+                            messagebox.showerror(
+                                "Error", "prize should be integer")
                     else:
-                        messagebox.showinfo("Empty Input", "Enter float rate per K.M.")
+                        messagebox.showinfo(
+                            "Empty Input", "Enter float rate per K.M.")
                 else:
-                    messagebox.showinfo("Empty Input", "Enter float rate per hour")
+                    messagebox.showinfo(
+                        "Empty Input", "Enter float rate per hour")
             else:
-                messagebox.showinfo("Empty Input", "Enter yes if vehicle has AC or no")
+                messagebox.showinfo(
+                    "Empty Input", "Enter yes if vehicle has AC or no")
         else:
-            messagebox.showinfo("Empty Input", "Enter prize of vehicle (integer)")
+            messagebox.showinfo(
+                "Empty Input", "Enter prize of vehicle (integer)")
     else:
         messagebox.showinfo("Empty Input", "Enter model name for vehicle")
 
 
 # adding new vehicle
 def final_add(head, en1, en2, en3, en4, en5):
-    # all cars are stored according to id 
+    # all cars are stored according to id
     # so last car will have max. id number
     # generating new id for new car
     pid = head.all_cars[len(head.all_cars)-1].id + 1
-    # creating new car 
+    # creating new car
     temp = vehical(pid)
     # adding car info given by admin
     temp.model = en1.get()
@@ -198,7 +216,9 @@ def final_add(head, en1, en2, en3, en4, en5):
         en4.delete(0, tk.END)
         en5.delete(0, tk.END)
 
-# handle remove action 
+# handle remove action
+
+
 def handle_remove_vehicle(head):
     # show cars to remove action
     # secondary window
@@ -208,9 +228,11 @@ def handle_remove_vehicle(head):
     # scrollbar to secondary window
     sc = tk.Scrollbar(master)
     sc.pack(side=tk.RIGHT, fill=tk.Y)
-    mylist = tk.Listbox(master, font=("Arial Bold", 12), width="100", yscrollcommand=sc.set)
+    mylist = tk.Listbox(master, font=("Arial Bold", 12),
+                        width="100", yscrollcommand=sc.set)
     for i in head.availabel_cars:
-        mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model+" prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
+        mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
+                      " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
     mylist.pack(side=tk.LEFT, fill=tk.BOTH)
     sc.config(command=mylist.yview)
 

@@ -11,7 +11,7 @@ def do_exit(root, head):
     if messagebox.askquestion("Access Required", "Are you sure to quit?") == 'yes':
         # update owner and history related files
         update_last(head)
-        
+
         # update excel files of cars and customers
         update_cache.update_cache(head)
         # sending mails
@@ -22,22 +22,26 @@ def do_exit(root, head):
             server.login(head.email_id, head.email_password)
             for i in head.mails:
                 msg = EmailMessage()
-                msg.set_content('your payment of '+str(i[1])+'Rs is done!\non:'+str(i[2].hour) +'/' +str(i[2].minute) +'\tdate:' +str(i[2].day)+'/'+str(i[2].month)+'/'+str(i[2].year))
-                msg['Subject']='Payment done for TAAS '+str(i[3])
-                msg['From']='kswami848@gmail.com'
-                msg['To']=i[0]
+                msg.set_content('your payment of '+str(i[1])+'Rs is done!\non:'+str(i[2].hour) + '/' + str(
+                    i[2].minute) + '\tdate:' + str(i[2].day)+'/'+str(i[2].month)+'/'+str(i[2].year))
+                msg['Subject'] = 'Payment done for TAAS '+str(i[3])
+                msg['From'] = 'kswami848@gmail.com'
+                msg['To'] = i[0]
                 server.send_message(msg)
             server.quit()
         else:
-            messagebox.showerror("not connected","you are not connected to internet to send emails")
-       
+            messagebox.showerror(
+                "not connected", "you are not connected to internet to send emails")
+
         # quit the application(master window)
         quit()
 
 # network connection check
+
+
 def connect(host='http://google.com'):
     try:
-        urllib.request.urlopen(host) #Python 3.x
+        urllib.request.urlopen(host)  # Python 3.x
         return True
     except:
         return False
@@ -47,7 +51,7 @@ def connect(host='http://google.com'):
 def update_last(head):
     # update owner file
     if head.history_changes != 0:
-        f = open("cache\storage.txt","w")
+        f = open("cache\storage.txt", "w")
         f.write(head.name+"\n")
         f.write(head.owner_name+"\n")
         f.write(head.owner_phone_number+"\n")

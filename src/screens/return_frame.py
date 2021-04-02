@@ -19,9 +19,12 @@ def return_frame(root, head):
         text_to_show += "Rented vehicle -\n"
         text_to_show += "Model Name :" + head.all_cars[
             head.customers[head.logged_in_customer_index].rented_car_index].model
-        text_to_show += "\nAC: " + head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].AC
-        text_to_show += "\nRented for :" + str(head.customers[head.logged_in_customer_index].time_car_rented) + "hours"
-        text_to_show += "\nPayment :" + str(head.customers[head.logged_in_customer_index].payment)
+        text_to_show += "\nAC: " + \
+            head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index].AC
+        text_to_show += "\nRented for :" + \
+            str(head.customers[head.logged_in_customer_index].time_car_rented) + "hours"
+        text_to_show += "\nPayment :" + \
+            str(head.customers[head.logged_in_customer_index].payment)
     label = tk.Label(frame,
                      text=text_to_show,
                      width="50",
