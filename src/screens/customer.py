@@ -67,6 +67,7 @@ def delete_ac(head, root):
                 print(g.id)
                 if head.delete_customer(head.customer_id):
                     head.history.append("account deleted")
+                    head.history_changes += 1
                     head.logged_in_customer = "no"
                     head.customer_id = -1
                     button.button(root, head, "start")

@@ -15,6 +15,10 @@ def admin_show(root, head):
     # 2. all cars
     # 3. customers
 
+    # set default frame to gain frame
+    gain(root, head)
+
+    
     # gain
     gain_button = tk.Button(root, text="Gain ", width="12", bg="purple1", font=("Arial", 10), 
     command=lambda: gain(root, head))

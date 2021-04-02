@@ -166,6 +166,8 @@ def check_status(root, head):
 
 
 def get_now(model, ac, hour, head, frame, root):
+    head.cars_changes += 1
+    head.customers_changes += 1
     for i in range(len(head.all_cars)):
         tem = head.all_cars[i]
         if tem.model == model.get() and tem.AC == ac.get() and tem.available == "yes":

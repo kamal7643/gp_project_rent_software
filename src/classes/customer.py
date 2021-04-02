@@ -1,5 +1,6 @@
 
 
+# class for customer objects
 class Customer:
     id = ""
     name = ""
@@ -15,9 +16,13 @@ class Customer:
     username = ""
     password = ""
 
+
+    # init of customers
     def __init__(self, id):
         self.id = id
 
+
+    # set customer profile
     def profile(self, name, phn, email, driving_l, car_id, car_index, car_index_second, time_car_rented, time_to_return, payment, username, password):
         self.name = str(name)
         self.phone_number = str(phn)
@@ -32,8 +37,12 @@ class Customer:
         self.username = str(username)
         self.password = str(password)
 
-    def return_status(self):
-        return self.car_rented
 
+    # check car status linked to customer
+    def return_status(self):
+        return self.car_rented_id
+
+
+    # check payment status
     def payment_status(self):
         return self.payment

@@ -6,6 +6,7 @@ from tkinter import messagebox
 import datetime
 
 
+# master class to handle software
 class RentalSoftware:
     name = ""
     owner_name = ""
@@ -25,7 +26,14 @@ class RentalSoftware:
     general_data = []
     customers = []
     history = []
+    history_changes = 0
+    cars_changes = 0
+    customers_changes = 0
+    mails = []
+    email_id = "TAAS.SE.LAB.01@gmail.com"
+    email_password= "taasadmin"
 
+    # init for software
     def __init__(self, name, owner_name, owner_phn, Helpline, sound, bg_file_name, pin):
         self.name = name
         self.owner_name = owner_name
@@ -39,7 +47,10 @@ class RentalSoftware:
         self.availabel_cars.clear()
         self.password = pin
 
+    # store all data in master class object (software)
     def __fetch__(self):
+
+        # reading cars
         data = pd.read_excel(r'.\cache\cars.xlsx')
         data = pd.DataFrame(data, columns=['id',
                                            'model',
@@ -64,6 +75,8 @@ class RentalSoftware:
         self.on_rent_cars.clear()
         self.on_repair_cars.clear()
         for i in range(len(data)):
+            
+            # creating cars
             temp = vehical(i)
             temp.id = data['id'][i]
             temp.model = data['model'][i]
@@ -89,6 +102,9 @@ class RentalSoftware:
                 self.on_rent_cars.append(temp)
             if temp.available == "yes":
                 self.availabel_cars.append(temp)
+
+
+        # reading customers
         customer_data = pd.read_excel(r'./cache/customers.xlsx')
         customer_data = pd.DataFrame(customer_data, columns=['id',
                                                              'name',
@@ -105,6 +121,8 @@ class RentalSoftware:
                                                              'password'])
         self.general_data.clear()
         self.customers.clear()
+
+        # creating customers
         for i in range(len(customer_data)):
             temp = Customer(customer_data['id'][i])
             temp.profile(customer_data['name'][i],
@@ -121,12 +139,15 @@ class RentalSoftware:
                          customer_data['password'][i])
             self.customers.append(temp)
         self.history.clear()
+
+        # history of the software (storing)
         f = open("cache\\history.txt", "r")
         line = f.readline()
         while line:
             self.history.append(line[:-1])
             line = f.readline()
 
+    # function to handle admin login 
     def is_admin(self, password):
         if self.password == password:
             self.logged_in = "yes"
@@ -134,6 +155,8 @@ class RentalSoftware:
         else:
             return False
 
+
+    # function to handle customer login
     def is_customer(self, username, password):
         temp_index = -1
         for i in self.customers:
@@ -144,19 +167,26 @@ class RentalSoftware:
                 self.logged_in_customer_index = temp_index
                 return True
 
+
+    # check if with same data already software has a customer account or not (sign up proccess)
     def is_double_customer(self, other):
         for i in self.customers:
             if i.email == other.email or i.phone_number == other.phone_number:
                 return True
         return False
 
+
+    # check possibility for username in customer sign up action
     def is_possible_username(self, password):
         for i in self.customers:
             if i.username == password:
                 return False
         return True
 
+
+    # delete customer account
     def delete_customer(self, id):
+        self.customers_changes += 1
         for i in range(len(self.customers)):
             if self.customers[i].id == id:
                 self.customers.pop(i)
@@ -164,26 +194,35 @@ class RentalSoftware:
                 return True
         return False
 
+
+    # get customer object by id
     def get_customer(self, id):
         for i in self.customers:
             if i.id == id:
                 return i
         return None
 
+
+    # after rent , remove this car from available cars list
     def remove_from_available(self, tem):
         for i in range(len(self.availabel_cars)):
             if self.availabel_cars[i].model == tem.model and self.availabel_cars[i].AC == tem.AC:
                 self.availabel_cars.pop(i)
                 return True
 
+
+    # add car to list of on rent cars
     def add_to_on_rent(self, tem):
         self.on_rent_cars.append(tem)
         return True
 
+    # compute charge 
     def get_charge(self, tem, hour, km, at):
         curr_time = datetime.datetime.now()
         if hour < 4:
             hour = 4
+        
+        # computing charge (advance)
         if at == 1:
             if tem.per_hour > tem.per_km:
                 if curr_time.hour >=18 or curr_time.hour <=6:
@@ -197,6 +236,7 @@ class RentalSoftware:
                         return int(tem.per_km*km*(3/2)+150)
                     return tem.per_km*km+150
                 return tem.per_km*km
+        # compute charge (on the time of returning car)
         else:
             if tem.per_hour > tem.per_km:
                 if curr_time.hour >= 18 or curr_time.hour <= 6 or hour >=12:
@@ -212,6 +252,7 @@ class RentalSoftware:
                 return tem.per_km*km
 
 
+    # payment frame for customers
     def pay(self, amount, root):
         if amount == 0:
             return True
@@ -228,10 +269,11 @@ class RentalSoftware:
             text += "refund"
         label = tk.Label(frame, text=str(float(amount))+"RS", font=("Arail", 12))
         label.place(relx=0.2, rely=0.3)
-        button = tk.Button(frame, text=text ,font=("Arail", 12), command=lambda: self.payment_done(frame))
+        button = tk.Button(frame, text=text ,font=("Arail", 12), command=lambda: self.payment_done(frame, amount,text))
         button.place(relx=0.45, rely=0.3)
         return True
 
+    # manage list of master object on return of car
     def return_vehicle(self, tem):
         tem.available = "yes"
         tem.rent = "no"
@@ -240,6 +282,8 @@ class RentalSoftware:
             if tem.id == self.on_rent_cars[i].id:
                 self.on_rent_cars.pop(i)
 
+
+    # disconnect customer to car after return of car
     def free_customer(self, tem):
         self.customers[self.logged_in_customer_index].car_rented_id = -1
         self.customers[self.logged_in_customer_index].rented_car_index = -1
@@ -247,6 +291,12 @@ class RentalSoftware:
         self.customers[self.logged_in_customer_index].time_car_rented = 0
         self.customers[self.logged_in_customer_index].time_to_return = 0
 
-    def payment_done(self, frame):
+
+    # payment done message
+    def payment_done(self, frame, pay, text):
         messagebox.showinfo("Payment", "Transfer successfull!")
+        
+        # sending mail
+        self.mails.append([self.customers[self.logged_in_customer_index].email, pay, datetime.datetime.now(), text])
+       
         frame.destroy()

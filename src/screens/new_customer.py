@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import messagebox
 
 
+
 # sign up frame
 def new_customer(root, head):
     clear.clear(root)
@@ -98,8 +99,11 @@ def signup(root, head, temp, en1, en2, en3, en4, en5, en6):
                                     if not head.is_double_customer(temp):
                                         if head.is_possible_username(temp.username):
                                             if en5.get() != en6.get():
+                                                head.customers_changes += 1
                                                 head.customers.append(temp)
+
                                                 head.history.append("Account created")
+                                                head.history_changes += 1
                                                 messagebox.showinfo("Account", "Your account has been created!")
                                                 head.logged_in_customer = "yes"
                                                 head.customer_id = temp.id

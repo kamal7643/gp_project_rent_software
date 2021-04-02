@@ -65,6 +65,8 @@ def return_frame(root, head):
 
 
 def return_function(frame, head, root):
+    head.cars_changes += 1
+    head.customers_changes += 1
     if head.customers[head.logged_in_customer_index].rented_car_index != -1:
         tem = head.all_cars[head.customers[head.logged_in_customer_index].rented_car_index]
         time_used = time.time()-tem.rented_time
