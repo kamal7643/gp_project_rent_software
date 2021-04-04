@@ -218,7 +218,7 @@ def final_add(head, en1, en2, en3, en4, en5):
         head.cars_changes += 1
         head.history.append("new car added")
         head.history_changes += 1
-        head.availabel_cars.append(temp)
+        head.available_cars.append(temp)
         print("added"+str(len(head.all_cars)))
         # clear entry boxes
         en1.delete(0, tk.END)
@@ -258,11 +258,11 @@ def final_remove(en, head):
     else:
         if d.isdigit():
             d = int(d)
-            for i in range(len(head.availabel_cars)):
+            for i in range(len(head.available_cars)):
                 # if car id match
-                if d == head.availabel_cars[i].id:
+                if d == head.available_cars[i].id:
                     if messagebox.askquestion("Access Required", "Are you sure to remove") == 'yes':
-                        head.availabel_cars.pop(i)
+                        head.available_cars.pop(i)
                         for j in range(len(head.all_cars)):
                             if d == head.all_cars[j].id:
                                 del head.all_cars[j]
