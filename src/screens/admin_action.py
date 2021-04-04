@@ -36,7 +36,7 @@ def admin_action(root, head):
     lid.place(relx=0.15, rely=0.5)
     en = tk.Entry(width="12", font=("Arial", 12))
     en.place(relx=0.25, rely=0.5)
-    # show cars availabe for remove action
+    # show cars available for remove action
     choose_button = tk.Button(text="choose", font=("Arial", 12), width="10", bg="gray60",
                               command=lambda: handle_remove_vehicle(head))
     choose_button.place(relx=0.4, rely=0.5)
@@ -58,7 +58,7 @@ def admin_action(root, head):
     home_button.place(relx=0.45, rely=0.9)
 
 
-# change name of the applcation
+# change name of the application
 def change_name(entry, root, head):
     # validate change name string
     if entry.get() != "":
@@ -240,7 +240,7 @@ def handle_remove_vehicle(head):
     sc.pack(side=tk.RIGHT, fill=tk.Y)
     mylist = tk.Listbox(master, font=("Arial", 12),
                         width="100", yscrollcommand=sc.set)
-    for i in head.availabel_cars:
+    for i in head.available_cars:
         mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
                       " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
     mylist.pack(side=tk.LEFT, fill=tk.BOTH)

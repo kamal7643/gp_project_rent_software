@@ -1,11 +1,11 @@
 
-
+# CUSTOMER CLASS AND ITS METHODS
 # class for customer objects
 class Customer:
     id = ""
     name = ""
     phone_number = ""
-    email = ""
+    email = ""                  #for user login and signup
     driving_licence = ""
     car_rented_id = -1
     rented_car_index = -1

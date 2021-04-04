@@ -79,7 +79,7 @@ def get_vehicle(root, head):
                           font=("Arial", 12))
         model_var = tk.StringVar(frame)
         model_choices = []
-        for i in head.availabel_cars:
+        for i in head.available_cars:
             if not(i.model in model_choices):
                 model_choices.append(i.model)
         model_var.set(model_choices[0])
@@ -92,7 +92,7 @@ def get_vehicle(root, head):
                           font=("Arial", 12))
         ac_var = tk.StringVar(frame)
         ac_choices = []
-        for i in head.availabel_cars:
+        for i in head.available_cars:
             if not(i.AC in ac_choices):
                 ac_choices.append(i.AC)
         ac_var.set(ac_choices[0])
@@ -205,7 +205,7 @@ def list_cars(root, head):
                      bg="purple1")
     frame.place(relx=0.2, rely=0.2)
     l = []
-    for i in head.availabel_cars:
+    for i in head.available_cars:
         x = [str(i.model), str(i.AC), str(i.prize), str(i.gain)]
         if not(x in l):
             l.append(x)

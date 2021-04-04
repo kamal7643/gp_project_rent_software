@@ -55,7 +55,7 @@ def main():
 
 # get owner information stored in files
 def get_last():
-    f = open("cache\\storage.txt", "r")
+    f = open("cache/storage.txt", "r")
     name = f.readline()
     owner = f.readline()
     owner_ph = f.readline()
