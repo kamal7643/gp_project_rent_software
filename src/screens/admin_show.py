@@ -64,17 +64,17 @@ def admin_show(root, head):
 # change frame
 def change_frame(root, head, txt, bts):
     if txt== "gain":
-        bts[0].config(bg="purple1")
+        bts[0].config(bg="red")
         bts[1].config(bg="gray40")
         bts[2].config(bg="gray40")
         gain(root, head, bts)
     elif txt == "cars":
-        bts[1].config(bg="purple1")
+        bts[1].config(bg="red")
         bts[0].config(bg="gray40")
         bts[2].config(bg="gray40")
         manage_cars(root, head, bts)
     else:
-        bts[2].config(bg="purple1")
+        bts[2].config(bg="red")
         bts[1].config(bg="gray40")
         bts[0].config(bg="gray40")
         manage_customers(root, head, bts)
