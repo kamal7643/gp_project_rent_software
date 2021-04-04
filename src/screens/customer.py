@@ -95,7 +95,7 @@ def logout(root, head):
 
 # profile show frame
 def profile_show(root, head):
-    frame = tk.Frame(root, width="225", height="150", bg="purple")
+    frame = tk.Frame(root, width="225", height="150", bg="purple", borderwidth = 10)
     frame.place(relx=0.04, rely=0.1)
     text = ""
     i = head.logged_in_customer_index
