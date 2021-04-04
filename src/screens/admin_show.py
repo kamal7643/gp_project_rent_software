@@ -286,7 +286,6 @@ def render_list_c(frame, listbox, start_index_c):
                               justify=tk.LEFT, anchor='nw', font=("Arial", 12))
                 lb.place(relx=j*0.20, rely=(p+1)*0.07)
 
-
 # comparator function to sort gain list
 def com(e):
-    return e[3]
+    return int(e[3])
