@@ -16,20 +16,29 @@ def admin_show(root, head):
     # 2. all cars
     # 3. customers
 
-    # set default frame to gain frame
-    gain(root, head)
-
+    # list of buttons of frames
+    bts = []
+   
+ 
     # gain
     gain_button = tk.Button(root, text="Gain ", width="12", bg="purple1", font=("Arial", 10),
-                            command=lambda: gain(root, head))
+                            command=lambda: change_frame(root, head, "gain", bts))
+    bts.append(gain_button)
 
     # cars
     cars_button = tk.Button(root, text="Cars ", width="12", bg="purple1", font=("Arial", 10),
-                            command=lambda: manage_cars(root, head))
+                            command=lambda: change_frame(root, head, "cars", bts))
+    bts.append(cars_button)
 
     # customers
     customers_button = tk.Button(root, text="Customers ", width="12", bg="purple1", font=("Arial", 10),
-                                 command=lambda: manage_customers(root, head))
+                                 command=lambda: change_frame(root, head, "customers", bts))
+    bts.append(customers_button)
+                    
+     # set default frame to gain frame
+    change_frame(root, head, "gain", bts)
+
+    
     # place header buttons
     gain_button.place(relx=0.35, rely=0.01)
     cars_button.place(relx=0.475, rely=0.01)
@@ -52,8 +61,25 @@ def admin_show(root, head):
 
 # gian show frame of master window
 
+# change frame
+def change_frame(root, head, txt, bts):
+    if txt== "gain":
+        bts[0].config(bg="purple1")
+        bts[1].config(bg="gray40")
+        bts[2].config(bg="gray40")
+        gain(root, head, bts)
+    elif txt == "cars":
+        bts[1].config(bg="purple1")
+        bts[0].config(bg="gray40")
+        bts[2].config(bg="gray40")
+        manage_cars(root, head, bts)
+    else:
+        bts[2].config(bg="purple1")
+        bts[1].config(bg="gray40")
+        bts[0].config(bg="gray40")
+        manage_customers(root, head, bts)
 
-def gain(root, head):
+def gain(root, head, bts):
     frame = tk.Frame(root, width="1000", height="500", bg="white")
     frame.place(relx=0.05, rely=0.1)
     # list to show
@@ -99,7 +125,7 @@ def last_render_list_b(listbox, frame):
 
 
 # show all cars
-def manage_cars(root, head):
+def manage_cars(root, head, bts):
     frame = tk.Frame(root, width="1000", height="500", bg="white")
     frame.place(relx=0.05, rely=0.1)
     # list of cars
@@ -179,7 +205,7 @@ def render_list(frame, listbox, start_index):
 
 
 # show customers in customers frame
-def manage_customers(root, head):
+def manage_customers(root, head, bts):
     frame = tk.Frame(root, width="1000", height="500", bg="white")
     frame.place(relx=0.05, rely=0.1)
     # list of customers

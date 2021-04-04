@@ -36,7 +36,10 @@ head for software<br/>
 
 
 #next<br/>
-1. add basic settings 
+1. change bg of buttons in admin show screen(done)<br/>
+2. styles for customer's profile<br/>
+3. km wala handle karna h<br/>
+4. add info in status->get rent -> customers<br/>
 
 ## required packages<br/>
 1. pip install pillow<br/>

@@ -104,6 +104,7 @@ def profile_show(root, head):
     text += "name = "+head.customers[i].name+"\n"
     text += "Email = "+head.customers[i].email+"\n"
     text = text.replace("@gmail.com", " ")
+    text += "Contact Number = "+head.customers[i].phone_number+"\n"
     label = tk.Label(frame, text=text, font=("Arial", 10),
                      width="30", justify=tk.LEFT, anchor='nw', bg="purple")
     label.place(relx=0.01, rely=0.01)
