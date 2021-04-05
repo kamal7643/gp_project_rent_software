@@ -110,23 +110,26 @@ def earn(frame, head, listx):
         tem = [i.model, i.AC]
         listy[listx.index(tem)] += i.gain
     print(listy)
-    X_axis = np.arange(len(listx))
-    plt.bar(X_axis - 0.2, listy, 0.4)
-    plt.xticks(X_axis, listx) 
-    plt.xlabel("Cars") 
-    plt.ylabel("Gain") 
-    plt.title("Gain vs Car") 
-    plt.legend() 
-    plt.show()
-    # canvas = tk.Canvas(frame, width=1000, height=500)
-    # canvas.pack()
-    # data = [23,85, 72, 43, 52]
-    # labels = ['A', 'B', 'C', 'D', 'E']
-    # plt.xticks(range(len(listy)), listx)
-    # plt.xlabel('cars')
-    # plt.ylabel('Amount')
-    # plt.title('earning')
-    # plt.bar(range(len(listy)), listx) 
+    labels = []
+    ac = []
+    non_ac = []
+    for i in listx:
+        if i[0] not in labels:
+            labels.append(i[0])
+            ac.append(0)
+            non_ac.append(0)
+    
+    
+    
+
+    for i in range(len)
+    # X_axis = np.arange(len(listx))
+    # plt.bar(X_axis, listy, 0.4)
+    # plt.xticks(X_axis, listx) 
+    # plt.xlabel("Cars") 
+    # plt.ylabel("Gain") 
+    # plt.title("Gain vs Car") 
+    # plt.legend() 
     # plt.show()
     
 
