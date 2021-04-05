@@ -16,23 +16,23 @@ def do_exit(root, head):
         update_cache.update_cache(head)
         # sending mails
         loading.loading(root)
-        if len(head.mails) != 0:
-            if connect():
-                server = smtplib.SMTP('smtp.gmail.com', 587)
-                server.starttls()
-                server.login(head.email_id, head.email_password)
-                for i in head.mails:
-                    msg = EmailMessage()
-                    msg.set_content('your payment of '+str(i[1])+'Rs is done!\non:'+str(i[2].hour) + '/' + str(
-                        i[2].minute) + '\tdate:' + str(i[2].day)+'/'+str(i[2].month)+'/'+str(i[2].year))
-                    msg['Subject'] = 'Payment done for TAAS '+str(i[3])
-                    msg['From'] = 'kswami848@gmail.com'
-                    msg['To'] = i[0]
-                    server.send_message(msg)
-                server.quit()
-            else:
-                messagebox.showerror(
-                    "not connected", "you are not connected to internet to send emails")
+        # if len(head.mails) != 0:
+            # if connect():
+            #     server = smtplib.SMTP('smtp.gmail.com', 587)
+            #     server.starttls()
+            #     server.login(head.email_id, head.email_password)
+            #     for i in head.mails:
+            #         msg = EmailMessage()
+            #         msg.set_content('your payment of '+str(i[1])+'Rs is done!\non:'+str(i[2].hour) + '/' + str(
+            #             i[2].minute) + '\tdate:' + str(i[2].day)+'/'+str(i[2].month)+'/'+str(i[2].year))
+            #         msg['Subject'] = 'Payment done for TAAS '+str(i[3])
+            #         msg['From'] = 'kswami848@gmail.com'
+            #         msg['To'] = i[0]
+            #         server.send_message(msg)
+            #     server.quit()
+            # else:
+            #     messagebox.showerror(
+            #         "not connected", "you are not connected to internet to send emails")
 
         # quit the application(master window)
         quit()

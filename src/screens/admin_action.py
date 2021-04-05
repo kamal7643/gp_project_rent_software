@@ -36,13 +36,9 @@ def admin_action(root, head):
     lid.place(relx=0.15, rely=0.5)
     en = tk.Entry(width="12", font=("Arial", 12))
     en.place(relx=0.25, rely=0.5)
-<<<<<<< HEAD
     # show cars availabe for remove action
     # menu
     # choose_id = tk.ComboboxCombobox
-=======
-    # show cars available for remove action
->>>>>>> c284a8b35a834475cf6f474fb4e3055def4c43ae
     choose_button = tk.Button(text="choose", font=("Arial", 12), width="10", bg="gray60",
                               command=lambda: handle_remove_vehicle(head, en))
     choose_button.place(relx=0.4, rely=0.5)
@@ -333,13 +329,8 @@ def handle_remove_vehicle(head, en):
     sc = tk.Scrollbar(master)
     sc.pack(side=tk.RIGHT, fill=tk.Y)
     mylist = tk.Listbox(master, font=("Arial", 12),
-<<<<<<< HEAD
                         width="100", yscrollcommand=sc)
-    for i in head.availabel_cars:
-=======
-                        width="100", yscrollcommand=sc.set)
     for i in head.available_cars:
->>>>>>> c284a8b35a834475cf6f474fb4e3055def4c43ae
         mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
                       " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
     mylist.pack(side=tk.LEFT, fill=tk.BOTH)

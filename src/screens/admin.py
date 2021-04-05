@@ -20,8 +20,12 @@ def admin(root, head):
         # admin show page
         show_button = tk.Button(text="Show", width="20", background="blue", font=(
             "Arial Bold", 12), command=lambda: button.button(root, head, "admin_show"))
+
+        # analyze
+        ana_button = tk.Button(text="Analyze", width="20", bg="blue", font=("Arial Bold", 12), command=lambda: button.button(root, head, "analyze"))
         action_button.place(relx=0.40, rely=0.35)
         show_button.place(relx=0.40, rely=0.45)
+        ana_button.place(relx=0.40, rely=0.55)
         # back button
         back_button = tk.Button(text="back", width="12", background="gray80", font=(
             "Arial Bold", 10), command=lambda: button.button(root, head, "start"))

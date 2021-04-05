@@ -284,11 +284,8 @@ class RentalSoftware:
     def return_vehicle(self, tem):
         tem.repair = "yes"
         tem.rent = "no"
-<<<<<<< HEAD
+        tem.available = "no"
         self.on_repair_cars.append(tem)
-=======
-        self.available_cars.append(tem)
->>>>>>> c284a8b35a834475cf6f474fb4e3055def4c43ae
         for i in range(len(self.on_rent_cars)):
             if tem.id == self.on_rent_cars[i].id:
                 self.on_rent_cars.pop(i)

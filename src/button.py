@@ -11,6 +11,7 @@ from src.screens import login
 from src.screens import login_customer
 from src.screens import customer
 from src.screens import new_customer
+from src.screens import analyze
 from src import do_exit
 import os
 
@@ -47,3 +48,5 @@ def button(root, head, f_name):
         customer.customer(root, head)
     elif f_name == "new_customer":
         new_customer.new_customer(root, head)
+    elif f_name == "analyze":
+        analyze.analyze(root, head)
