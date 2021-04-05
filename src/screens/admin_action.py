@@ -366,5 +366,6 @@ def final_remove(en, head):
                                 head.history_changes += 1
                                 print("removed ID :" + str(d))
                                 return
+            messagebox.showerror("invalid input", "Car not found")
         else:
             messagebox.showerror("ID expected", "ID should be integer")
