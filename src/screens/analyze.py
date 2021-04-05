@@ -111,7 +111,7 @@ def earn(frame, head, listx):
         listy[listx.index(tem)] += i.gain
     print(listy)
     X_axis = np.arange(len(listx))
-    plt.bar(X_axis - 0.2, listy, 0.4)
+    plt.bar(X_axis , listy, 0.4)
     plt.xticks(X_axis, listx) 
     plt.xlabel("Cars") 
     plt.ylabel("Gain") 
