@@ -37,13 +37,40 @@ def admin_action(root, head):
     en = tk.Entry(width="12", font=("Arial", 12))
     en.place(relx=0.25, rely=0.5)
     # show cars availabe for remove action
+    # menu
+    # choose_id = tk.ComboboxCombobox
     choose_button = tk.Button(text="choose", font=("Arial", 12), width="10", bg="gray60",
-                              command=lambda: handle_remove_vehicle(head))
+                              command=lambda: handle_remove_vehicle(head, en))
     choose_button.place(relx=0.4, rely=0.5)
     # remove action
     remove = tk.Button(text="remove", font=("Arial", 12), width="10", bg="purple1",
                        command=lambda: final_remove(en, head))
     remove.place(relx=0.9, rely=0.5)
+
+    # reapir car
+    label2 = tk.Label(text="Repair Vehicle :",
+                     bg="deep sky blue",
+                     font=("Arial", 12), width="15")
+    label2.place(relx=0.0, rely=0.65)
+    lid2 = tk.Label(text="ID : ", font=("Arial", 12),
+                    bg="deep sky blue", width="10")
+    lid2.place(relx=0.15, rely=0.65)
+    en2 = tk.Entry(width="12", font=("Arial", 12))
+    en2.place(relx=0.25, rely=0.65)
+    choose_button2 = tk.Button(text="choose", font=("Arial", 12), width="10", bg="gray60",
+                              command=lambda: handle_repair_vehicle(head, en2))
+    choose_button2.place(relx=0.4, rely=0.65)
+    label3 = tk.Label(text="Repair Charge:",
+                        bg="deep sky blue",
+                        font=("Arial", 12),
+                        width="12"
+                        )
+    label3.place(relx=0.55, rely=0.65)
+    en3 = tk.Entry(width="12", font=("Arial", 12))
+    en3.place(relx=0.67, rely=0.65)
+    remove2 = tk.Button(text="vehicle repaired", font=("Arial", 12), width="15", bg="purple1",
+                       command=lambda: final_repair(en2, head, en3))
+    remove2.place(relx=0.85, rely=0.65)
     # back to admin home page
     back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial", 10),
                             command=lambda: button.button(root, head, "admin"))
@@ -73,6 +100,53 @@ def change_name(entry, root, head):
     else:
         messagebox.showinfo("Invalid Input", "Name can't be empty string")
 
+# handling repair cars
+
+
+def handle_repair_vehicle(head, en2):
+    master = tk.Tk()
+    master.title("vehicles")
+    master.geometry("800x400")
+    # scrollbar to secondary window
+    sc = tk.Scrollbar(master)
+    sc.pack(side=tk.RIGHT, fill=tk.Y)
+    mylist = tk.Listbox(master, font=("Arial", 12),
+                        width="100", yscrollcommand=sc)
+    for i in head.on_repair_cars:
+        mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
+                      " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
+    mylist.pack(side=tk.LEFT, fill=tk.BOTH)
+    sc.config(command=mylist.yview)
+    select_button = tk.Button(master, text="select", font=("Arial", 12), width="10", bg="gray40", command=lambda: select_item(mylist, en2, master))
+    select_button.place(relx=0.85, rely=0.9)
+    master.mainloop()
+
+def final_repair(en2, head, en3):
+    d= en2.get()
+    if d != "":
+        if d.isdigit():
+            if en3.get().isdigit():
+                tem = head.get_car(int(d))
+                tem.repair = "no"
+                tem.available = "yes"
+                tem.rent = "no"
+                tem.pay_for_repair += int(en3.get())
+                tem.times_repaired += 1
+                head.cars_changes += 1
+                for i in range(len(head.on_repair_cars)):
+                    if head.on_repair_cars[i].id == tem.id:
+                        head.on_repair_cars.pop(i)
+                        en2.delete(0, tk.END)
+                        en3.delete(0, tk.END)
+                        return 
+                    else:
+                        print("car not found in repair list")
+            else:
+                messagebox.showerror("Invalid input", "Charge should be integer!")
+        else:
+            messagebox.showerror("Invalid input", "ID should be integer!")
+    else:
+        messagebox.showerror("Invalid input", "Enter Id to repair car!")
 
 # handling add vehicle action
 def handle_add_vehicle(head, root):
@@ -228,8 +302,24 @@ def final_add(head, en1, en2, en3, en4, en5):
 
 # handle remove action
 
+def select_item(mylist, en, master):
+    for i in mylist.curselection():
+        en.delete(0,tk.END)
+        txt = ""
+        for j in range(len(mylist.get(i))):
+            if mylist.get(i)[j] == ':':
+                k=j+1
+                while mylist.get(i)[k]!=' ':
+                    txt += mylist.get(i)[k]
+                    k += 1
+                break
+        en.insert(0,txt)
+        
+        master.destroy()
+        return
 
-def handle_remove_vehicle(head):
+
+def handle_remove_vehicle(head, en):
     # show cars to remove action
     # secondary window
     master = tk.Tk()
@@ -239,13 +329,14 @@ def handle_remove_vehicle(head):
     sc = tk.Scrollbar(master)
     sc.pack(side=tk.RIGHT, fill=tk.Y)
     mylist = tk.Listbox(master, font=("Arial", 12),
-                        width="100", yscrollcommand=sc.set)
+                        width="100", yscrollcommand=sc)
     for i in head.availabel_cars:
         mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
                       " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
     mylist.pack(side=tk.LEFT, fill=tk.BOTH)
     sc.config(command=mylist.yview)
-
+    select_button = tk.Button(master, text="select", font=("Arial", 12), width="10", bg="gray40", command=lambda: select_item(mylist, en, master))
+    select_button.place(relx=0.85, rely=0.9)
     master.mainloop()
 
 

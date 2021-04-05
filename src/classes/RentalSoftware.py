@@ -193,6 +193,12 @@ class RentalSoftware:
                 return True
         return False
 
+    # get car object by id
+    def get_car(self, id):
+        for i in self.all_cars:
+            if i.id == id:
+                return i
+
     # get customer object by id
 
     def get_customer(self, id):
@@ -276,12 +282,13 @@ class RentalSoftware:
 
     # manage list of master object on return of car
     def return_vehicle(self, tem):
-        tem.available = "yes"
+        tem.repair = "yes"
         tem.rent = "no"
-        self.availabel_cars.append(tem)
+        self.on_repair_cars.append(tem)
         for i in range(len(self.on_rent_cars)):
             if tem.id == self.on_rent_cars[i].id:
                 self.on_rent_cars.pop(i)
+                return
 
     # disconnect customer to car after return of car
 
