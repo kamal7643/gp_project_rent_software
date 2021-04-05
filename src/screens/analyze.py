@@ -110,7 +110,14 @@ def earn(frame, head, listx):
         tem = [i.model, i.AC]
         listy[listx.index(tem)] += i.gain
     print(listy)
-    
+    X_axis = np.arange(len(listx))
+    plt.bar(X_axis - 0.2, listy, 0.4)
+    plt.xticks(X_axis, listx) 
+    plt.xlabel("Cars") 
+    plt.ylabel("Gain") 
+    plt.title("Gain vs Car") 
+    plt.legend() 
+    plt.show()
     # canvas = tk.Canvas(frame, width=1000, height=500)
     # canvas.pack()
     # data = [23,85, 72, 43, 52]
