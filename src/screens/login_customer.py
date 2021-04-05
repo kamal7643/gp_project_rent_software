@@ -28,17 +28,17 @@ def login_customer(root, head):
     en0.focus()
 
     # go back to landing page
-    back_button = tk.Button(frame, text="back", width="12", background="gray80", font=("Arial Bold", 10),
+    back_button = tk.Button(frame, text="back", width="12", background="gray80", borderwidth=3, relief=tk.GROOVE, font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
     back_button.place(relx=0.0, rely=0.9)
 
     # login function
-    next_button = tk.Button(frame, text="login", width="12", background="gray80", font=("Arial Bold", 10),
+    next_button = tk.Button(frame, text="login", width="12", background="gray80", borderwidth=3, relief=tk.GROOVE, font=("Arial Bold", 10),
                             command=lambda: retquest_to_login(root, head, en0, en))
     next_button.place(relx=0.83, rely=0.9)
 
     # go to sign up frame
-    signup_button = tk.Button(frame, text="Sign up", width="12", background="gray80", font=("Arial Bold", 10),
+    signup_button = tk.Button(frame, text="Sign up", width="12", background="gray80", borderwidth=3, relief=tk.GROOVE, font=("Arial Bold", 10),
                               command=lambda: button.button(root, head, "new_customer"))
     signup_button.place(relx=0.83, rely=0)
 

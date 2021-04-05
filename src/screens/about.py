@@ -15,15 +15,15 @@ def about(root, head):
                      justify=tk.LEFT,
                      font=("Arial Bold", 10))
     label.place(relx=0, rely=0)
-    help_button = tk.Button(text="help", width="12", background="gray80", font=(
+    help_button = tk.Button(text="help", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=(
         "Arial Bold", 10), command=lambda: button.button(root, head, "help"))
     help_button.place(relx=0.9, rely=0.0)
-    setting_button = tk.Button(text="setting", width="12", background="gray80", font=(
+    setting_button = tk.Button(text="setting", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=(
         "Arial Bold", 10), command=lambda: button.button(root, head, "setting"))
     setting_button.place(relx=0.9, rely=0.05)
     back_button = tk.Button(text="back",
                             width="12",
-                            background="gray80",
+                            background="gray80", borderwidth=3, relief=tk.GROOVE,
                             font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
     back_button.place(relx=0.0, rely=0.9)

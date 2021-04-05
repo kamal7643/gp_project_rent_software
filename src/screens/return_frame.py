@@ -34,33 +34,33 @@ def return_frame(root, head):
                      font=("Arial", 12))
     label.place(relx=0, rely=0)
     return_button = tk.Button(frame,
-                              text="return",
+                              text="return", borderwidth=3, relief=tk.GROOVE,
                               width="15",
                               bg="gray60",
                               font=("Arial", 12),
                               command=lambda: return_function(frame, head, root))
     return_button.place(relx=0.7, rely=0.01)
     back_button = tk.Button(frame,
-                            text="back",
+                            text="back", borderwidth=3, relief=tk.GROOVE,
                             width="15",
                             bg="gray60",
                             font=("Arial", 12),
                             command=lambda: frame.destroy())
     back_button.place(relx=0.4, rely=0.9)
     back_button = tk.Button(text="back",
-                            width="12",
+                            width="12", borderwidth=3, relief=tk.GROOVE,
                             background="gray80",
                             font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "customer"))
     back_button.place(relx=0.0, rely=0.9)
     exit_button = tk.Button(text="exit",
-                            width="12",
+                            width="12", borderwidth=3, relief=tk.GROOVE,
                             background="gray80",
                             font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)
     home_button = tk.Button(text="home",
-                            width="12",
+                            width="12", borderwidth=3, relief=tk.GROOVE,
                             background="gray80",
                             font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))

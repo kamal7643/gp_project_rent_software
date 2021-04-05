@@ -15,31 +15,31 @@ def admin(root, head):
         print("admin")
         clear.clear(root)
         # admin action page
-        action_button = tk.Button(text="Action", width="20", background="blue", font=(
+        action_button = tk.Button(text="Add/Remove", width="20", borderwidth=3, relief=tk.GROOVE, background="blue", font=(
             "Arial Bold", 12), command=lambda: button.button(root, head, "admin_action"))
         # admin show page
-        show_button = tk.Button(text="Show", width="20", background="blue", font=(
+        show_button = tk.Button(text="Show all info", borderwidth=3, relief=tk.GROOVE, width="20", background="blue", font=(
             "Arial Bold", 12), command=lambda: button.button(root, head, "admin_show"))
 
         # analyze
-        ana_button = tk.Button(text="Analyze", width="20", bg="blue", font=("Arial Bold", 12), command=lambda: button.button(root, head, "analyze"))
-        action_button.place(relx=0.40, rely=0.35)
-        show_button.place(relx=0.40, rely=0.45)
-        ana_button.place(relx=0.40, rely=0.55)
+        ana_button = tk.Button(text="Statistics", width="20", borderwidth=3, relief=tk.GROOVE, bg="blue", font=("Arial Bold", 12), command=lambda: button.button(root, head, "analyze"))
+        action_button.place(relx=0.40, rely=0.3)
+        show_button.place(relx=0.40, rely=0.4)
+        ana_button.place(relx=0.40, rely=0.5)
         # back button
-        back_button = tk.Button(text="back", width="12", background="gray80", font=(
+        back_button = tk.Button(text="back", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=(
             "Arial Bold", 10), command=lambda: button.button(root, head, "start"))
         back_button.place(relx=0.0, rely=0.9)
         # exit application
-        exit_button = tk.Button(text="exit", width="12", background="gray80", font=(
+        exit_button = tk.Button(text="exit", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=(
             "Arial Bold", 10), command=lambda: button.button(root, head, "do_exit"))
         exit_button.place(relx=0.91, rely=0.9)
         # go to landing page
-        home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
+        home_button = tk.Button(text="home", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                                 command=lambda: button.button(root, head, "start"))
         home_button.place(relx=0.45, rely=0.9)
         # log out admin account
-        log_out_button = tk.Button(text="Logout", width="15", font=("Arial", 10),
+        log_out_button = tk.Button(text="Logout", width="15", borderwidth=3, relief=tk.GROOVE, font=("Arial", 10),
                                    command=lambda: logout(root, head))
         log_out_button.place(relx=0.85, rely=0.0)
 

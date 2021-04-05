@@ -21,17 +21,17 @@ def admin_show(root, head):
    
  
     # gain
-    gain_button = tk.Button(root, text="Gain ", width="12", bg="purple1", font=("Arial", 10),
+    gain_button = tk.Button(root, text="Gain ", borderwidth=3, relief=tk.GROOVE, width="12", bg="purple1", font=("Arial", 10),
                             command=lambda: change_frame(root, head, "gain", bts))
     bts.append(gain_button)
 
     # cars
-    cars_button = tk.Button(root, text="Cars ", width="12", bg="purple1", font=("Arial", 10),
+    cars_button = tk.Button(root, text="Cars ", borderwidth=3, relief=tk.GROOVE, width="12", bg="purple1", font=("Arial", 10),
                             command=lambda: change_frame(root, head, "cars", bts))
     bts.append(cars_button)
 
     # customers
-    customers_button = tk.Button(root, text="Customers ", width="12", bg="purple1", font=("Arial", 10),
+    customers_button = tk.Button(root, text="Customers ", borderwidth=3, relief=tk.GROOVE, width="12", bg="purple1", font=("Arial", 10),
                                  command=lambda: change_frame(root, head, "customers", bts))
     bts.append(customers_button)
                     
@@ -45,17 +45,17 @@ def admin_show(root, head):
     customers_button.place(relx=0.6, rely=0.01)
 
     # go back to admin home page
-    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10),
+    back_button = tk.Button(text="back", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "admin"))
     back_button.place(relx=0.0, rely=0.9)
 
     # exit application
-    exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10),
+    exit_button = tk.Button(text="exit", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)
 
     # go to landing page of the application
-    home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
+    home_button = tk.Button(text="home", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
     home_button.place(relx=0.45, rely=0.9)
 
@@ -97,11 +97,11 @@ def gain(root, head, bts):
     render_list(frame, listbox, start_index_b)
 
     # next items of the list
-    next_button = tk.Button(frame, text="next", width="12", background="gray80", font=("Arial Bold", 10),
+    next_button = tk.Button(frame, text="next", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: next_render_list_b(listbox, frame))
 
     # last items of the list
-    last_button = tk.Button(frame, text="last", width="12", background="gray80", font=("Arial Bold", 10),
+    last_button = tk.Button(frame, text="last", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: last_render_list_b(listbox, frame))
     last_button.place(relx=0.2, rely=0.9)
     next_button.place(relx=0.75, rely=0.9)
@@ -140,11 +140,11 @@ def manage_cars(root, head, bts):
     render_list(frame, listbox, start_index)
 
     # next range of car list
-    next_button = tk.Button(frame, text="next", width="12", background="gray80", font=("Arial Bold", 10),
+    next_button = tk.Button(frame, text="next", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: next_render_list(listbox, frame))
 
     # last range of car list
-    last_button = tk.Button(frame, text="last", width="12", background="gray80", font=("Arial Bold", 10),
+    last_button = tk.Button(frame, text="last", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: last_render_list(listbox, frame))
     last_button.place(relx=0.2, rely=0.9)
     next_button.place(relx=0.75, rely=0.9)
@@ -220,11 +220,11 @@ def manage_customers(root, head, bts):
     render_list_c(frame, listbox, start_index_c)
 
     # next customers
-    next_button = tk.Button(frame, text="next", width="12", background="gray80", font=("Arial Bold", 10),
+    next_button = tk.Button(frame, text="next", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: next_render_list_c(listbox, frame))
 
     # last customers
-    last_button = tk.Button(frame, text="last", width="12", background="gray80", font=("Arial Bold", 10),
+    last_button = tk.Button(frame, text="last", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial Bold", 10),
                             command=lambda: last_render_list_c(listbox, frame))
     last_button.place(relx=0.2, rely=0.9)
     next_button.place(relx=0.75, rely=0.9)

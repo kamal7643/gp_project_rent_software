@@ -18,42 +18,42 @@ def customer(root, head):
         clear(root)
 
         # profile of cutomer
-        profile_button = tk.Button(text="profile", width="10", font=("Arial", 12),
+        profile_button = tk.Button(text="profile", width="10", font=("Arial", 12), borderwidth=3, relief=tk.GROOVE,
                                    command=lambda: profile_show(root, head))
         profile_button.place(relx=0.01, rely=0.01)
 
         # go to rent page
-        rent_button = tk.Button(text="rent", width="20", background="blue", font=("Arial Bold", 12),
+        rent_button = tk.Button(text="rent", width="20", background="blue", font=("Arial Bold", 12), borderwidth=3, relief=tk.GROOVE,
                                 command=lambda: button.button(root, head, "get_rent"))
 
         # go to renturn car page
-        return_button = tk.Button(text="return", width="20", background="blue", font=("Arial Bold", 12),
+        return_button = tk.Button(text="return", width="20", background="blue", font=("Arial Bold", 12), borderwidth=3, relief=tk.GROOVE,
                                   command=lambda: button.button(root, head, "return_frame"))
         rent_button.place(relx=0.40, rely=0.35)
         return_button.place(relx=0.40, rely=0.45)
 
         # go back to landing page
-        back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10),
+        back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial Bold", 10), borderwidth=3, relief=tk.GROOVE,
                                 command=lambda: button.button(root, head, "start"))
         back_button.place(relx=0.0, rely=0.9)
 
         # exit application
-        exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10),
+        exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial Bold", 10), borderwidth=3, relief=tk.GROOVE,
                                 command=lambda: button.button(root, head, "do_exit"))
         exit_button.place(relx=0.91, rely=0.9)
 
         # go to landing page
-        home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
+        home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10), borderwidth=3, relief=tk.GROOVE,
                                 command=lambda: button.button(root, head, "start"))
         home_button.place(relx=0.45, rely=0.9)
 
         # delete current logged in account
-        delete_account = tk.Button(text="Delete Account", width="15", font=("Arial", 10),
+        delete_account = tk.Button(text="Delete Account", width="15", font=("Arial", 10), borderwidth=3, relief=tk.GROOVE,
                                    command=lambda: delete_ac(head, root))
         delete_account.place(relx=0.85, rely=0)
 
         # logged out this account
-        log_out_button = tk.Button(text="Logout", width="15", font=("Arial", 10),
+        log_out_button = tk.Button(text="Logout", width="15", font=("Arial", 10), borderwidth=3, relief=tk.GROOVE,
                                    command=lambda: logout(root, head))
         log_out_button.place(relx=0.85, rely=0.07)
 
@@ -108,6 +108,6 @@ def profile_show(root, head):
     label = tk.Label(frame, text=text, font=("Arial", 10),
                      width="30", justify=tk.LEFT, anchor='nw', bg="purple")
     label.place(relx=0.01, rely=0.01)
-    back_button = tk.Button(frame, text="back", font=(
+    back_button = tk.Button(frame, text="back", borderwidth=3, relief=tk.GROOVE, font=(
         "Arail", 12), command=lambda: frame.destroy())
     back_button.place(relx=0.01, rely=0.8)

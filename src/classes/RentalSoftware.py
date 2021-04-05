@@ -275,7 +275,7 @@ class RentalSoftware:
         label = tk.Label(frame, text=str(float(amount)) +
                          "RS", font=("Arial", 12))
         label.place(relx=0.2, rely=0.3)
-        button = tk.Button(frame, text=text, font=(
+        button = tk.Button(frame, text=text, borderwidth=3, relief=tk.GROOVE, font=(
             "Arial", 12), command=lambda: self.payment_done(frame, amount, text))
         button.place(relx=0.45, rely=0.3)
         return True

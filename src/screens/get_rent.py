@@ -11,7 +11,7 @@ def get_rent(root, head):
     clear.clear(root)
 
     # rules frame
-    b_rules_button = tk.Button(text="Rules", width="20",
+    b_rules_button = tk.Button(text="Rules", width="20", borderwidth=3, relief=tk.GROOVE,
                                bg="green", font=("Arial Bold", 12),
                                anchor='sw',
                                command=lambda: rules(root, head))
@@ -19,7 +19,7 @@ def get_rent(root, head):
 
 
     # get car frame
-    get_car = tk.Button(text="Get vehicle", width="20",
+    get_car = tk.Button(text="Get vehicle", width="20", borderwidth=3, relief=tk.GROOVE,
                         bg="green", font=("Arial Bold", 12),
                         anchor='sw',
                         command=lambda: get_vehicle(root, head))
@@ -27,7 +27,7 @@ def get_rent(root, head):
 
 
     # check status frame
-    status = tk.Button(text="Status", width="20",
+    status = tk.Button(text="Status", width="20", borderwidth=3, relief=tk.GROOVE,
                        bg="green", font=("Arial Bold", 12),
                        anchor='sw',
                        command=lambda: check_status(root, head))
@@ -35,19 +35,19 @@ def get_rent(root, head):
 
     # last page
     back_button = tk.Button(text="back",
-                            width="12",
+                            width="12", borderwidth=3, relief=tk.GROOVE,
                             background="gray80",
                             font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "customer"))
     back_button.place(relx=0.0, rely=0.9)
 
     # exit application
-    exit_button = tk.Button(text="exit", width="12", background="gray80", font=(
+    exit_button = tk.Button(text="exit", width="12", background="gray80", borderwidth=3, relief=tk.GROOVE, font=(
         "Arial Bold", 10), command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)
 
     # landing page of application
-    home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial Bold", 10),
+    home_button = tk.Button(text="home", width="12", background="gray80", borderwidth=3, relief=tk.GROOVE, font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
     home_button.place(relx=0.45, rely=0.9)
 
@@ -77,7 +77,7 @@ def rules(root, head):
     # exit this frame
     back_button = tk.Button(frame,
                             text="back",
-                            width="15",
+                            width="15", borderwidth=3, relief=tk.GROOVE,
                             bg="gray60",
                             font=("Arial", 12),
                             command=lambda: frame.destroy())
@@ -150,7 +150,7 @@ def get_vehicle(root, head):
 
         # list out all availabel cars
         list_av_button = tk.Button(frame,
-                                   text="Available cars",
+                                   text="Available cars", borderwidth=3, relief=tk.GROOVE,
                                    bg="gray50",
                                    font=("Arial", 12),
                                    command=lambda: list_cars(root, head))
@@ -159,7 +159,7 @@ def get_vehicle(root, head):
 
         # get now car function
         get_now_button = tk.Button(frame,
-                                   text="get now",
+                                   text="get now", borderwidth=3, relief=tk.GROOVE,
                                    bg="gray50",
                                    font=("Arial", 12),
                                    command=lambda: get_now(model_var, ac_var, hour_var, head, frame, root))
@@ -169,7 +169,7 @@ def get_vehicle(root, head):
         # last page
         back_button = tk.Button(frame,
                                 text="back",
-                                width="15",
+                                width="15", borderwidth=3, relief=tk.GROOVE,
                                 bg="gray60",
                                 font=("Arial", 12),
                                 command=lambda: frame.destroy())
@@ -217,7 +217,7 @@ def check_status(root, head):
     back_button = tk.Button(frame,
                             text="back",
                             width="15",
-                            bg="gray60",
+                            bg="gray60", borderwidth=3, relief=tk.GROOVE,
                             font=("Arial", 12),
                             command=lambda: frame.destroy())
     back_button.place(relx=0.4, rely=0.9)
@@ -288,7 +288,7 @@ def list_cars(root, head):
     back_button = tk.Button(frame,
                             text="back",
                             width="15",
-                            bg="gray60",
+                            bg="gray60", borderwidth=3, relief=tk.GROOVE,
                             font=("Arial", 12),
                             command=lambda: frame.destroy())
     back_button.place(relx=0.4, rely=0.9)

@@ -20,7 +20,7 @@ def admin_action(root, head):
     change_name_entry = tk.Entry(width="20", font=("Arial", 12))
     change_name_entry.place(relx=0.15, rely=0.05)
     change_button = tk.Button(text="change",
-                              font=("Arial", 12),
+                              font=("Arial", 12), borderwidth=3, relief=tk.GROOVE,
                               width="10",
                               bg="purple1",
                               command=lambda: change_name(change_name_entry, root, head))
@@ -39,11 +39,11 @@ def admin_action(root, head):
     # show cars availabe for remove action
     # menu
     # choose_id = tk.ComboboxCombobox
-    choose_button = tk.Button(text="choose", font=("Arial", 12), width="10", bg="gray60",
+    choose_button = tk.Button(text="choose", borderwidth=3, relief=tk.GROOVE, font=("Arial", 12), width="10", bg="gray60",
                               command=lambda: handle_remove_vehicle(head, en))
     choose_button.place(relx=0.4, rely=0.5)
     # remove action
-    remove = tk.Button(text="remove", font=("Arial", 12), width="10", bg="purple1",
+    remove = tk.Button(text="remove", font=("Arial", 12), borderwidth=3, relief=tk.GROOVE, width="10", bg="purple1",
                        command=lambda: final_remove(en, head))
     remove.place(relx=0.9, rely=0.5)
 
@@ -57,7 +57,7 @@ def admin_action(root, head):
     lid2.place(relx=0.15, rely=0.65)
     en2 = tk.Entry(width="12", font=("Arial", 12))
     en2.place(relx=0.25, rely=0.65)
-    choose_button2 = tk.Button(text="choose", font=("Arial", 12), width="10", bg="gray60",
+    choose_button2 = tk.Button(text="choose", borderwidth=3, relief=tk.GROOVE, font=("Arial", 12), width="10", bg="gray60",
                               command=lambda: handle_repair_vehicle(head, en2))
     choose_button2.place(relx=0.4, rely=0.65)
     label3 = tk.Label(text="Repair Charge:",
@@ -68,19 +68,19 @@ def admin_action(root, head):
     label3.place(relx=0.55, rely=0.65)
     en3 = tk.Entry(width="12", font=("Arial", 12))
     en3.place(relx=0.67, rely=0.65)
-    remove2 = tk.Button(text="vehicle repaired", font=("Arial", 12), width="15", bg="purple1",
+    remove2 = tk.Button(text="vehicle repaired", borderwidth=3, relief=tk.GROOVE, font=("Arial", 12), width="15", bg="purple1",
                        command=lambda: final_repair(en2, head, en3))
     remove2.place(relx=0.85, rely=0.65)
     # back to admin home page
-    back_button = tk.Button(text="back", width="12", background="gray80", font=("Arial", 10),
+    back_button = tk.Button(text="back", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial", 10),
                             command=lambda: button.button(root, head, "admin"))
     back_button.place(relx=0.0, rely=0.9)
     # exit application
-    exit_button = tk.Button(text="exit", width="12", background="gray80", font=("Arial", 10),
+    exit_button = tk.Button(text="exit", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial", 10),
                             command=lambda: button.button(root, head, "do_exit"))
     exit_button.place(relx=0.91, rely=0.9)
     # go to landing page of the application
-    home_button = tk.Button(text="home", width="12", background="gray80", font=("Arial", 10),
+    home_button = tk.Button(text="home", width="12", borderwidth=3, relief=tk.GROOVE, background="gray80", font=("Arial", 10),
                             command=lambda: button.button(root, head, "start"))
     home_button.place(relx=0.45, rely=0.9)
 
@@ -104,22 +104,25 @@ def change_name(entry, root, head):
 
 
 def handle_repair_vehicle(head, en2):
-    master = tk.Tk()
-    master.title("vehicles")
-    master.geometry("800x400")
-    # scrollbar to secondary window
-    sc = tk.Scrollbar(master)
-    sc.pack(side=tk.RIGHT, fill=tk.Y)
-    mylist = tk.Listbox(master, font=("Arial", 12),
-                        width="100", yscrollcommand=sc)
-    for i in head.on_repair_cars:
-        mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
-                      " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
-    mylist.pack(side=tk.LEFT, fill=tk.BOTH)
-    sc.config(command=mylist.yview)
-    select_button = tk.Button(master, text="select", font=("Arial", 12), width="10", bg="gray40", command=lambda: select_item(mylist, en2, master))
-    select_button.place(relx=0.85, rely=0.9)
-    master.mainloop()
+    if len(head.on_repair_cars) > 0:
+        master = tk.Tk()
+        master.title("vehicles")
+        master.geometry("800x400")
+        # scrollbar to secondary window
+        sc = tk.Scrollbar(master)
+        sc.pack(side=tk.RIGHT, fill=tk.Y)
+        mylist = tk.Listbox(master, font=("Arial", 12),
+                            width="100", yscrollcommand=sc)
+        for i in head.on_repair_cars:
+            mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
+                        " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
+        mylist.pack(side=tk.LEFT, fill=tk.BOTH)
+        sc.config(command=mylist.yview)
+        select_button = tk.Button(master, text="select", borderwidth=3, relief=tk.GROOVE, font=("Arial", 12), width="10", bg="gray40", command=lambda: select_item(mylist, en2, master))
+        select_button.place(relx=0.85, rely=0.9)
+        master.mainloop()
+    else:
+        messagebox.showinfo("Invalid Action", "All Cars repaired!")
 
 def final_repair(en2, head, en3):
     d= en2.get()
@@ -160,7 +163,7 @@ def handle_add_vehicle(head, root):
                       font=("Arial", 12))
     label2 = tk.Label(frame,text="model name:", width="12",
                       bg="gray80", font=("Arial", 12))
-    label3 = tk.Label(frame,text="prize :", width="12",
+    label3 = tk.Label(frame,text="price :", width="12",
                       bg="gray80", font=("Arial", 12))
     label4 = tk.Label(frame, text="AC:", width="12",
                       bg="gray80", font=("Arial", 12))
@@ -189,7 +192,7 @@ def handle_add_vehicle(head, root):
     en5.place(relx=0.5, rely=0.60)
     add_button = tk.Button(frame, text="add",
                            font=("Arial", 12),
-                           bg="purple1",
+                           bg="purple1", borderwidth=3, relief=tk.GROOVE,
                            width="10",
                            command=lambda: add(head, en1, en2, ac_var, en4, en5))
     add_button.place(relx=0.4, rely=0.85)
@@ -335,7 +338,7 @@ def handle_remove_vehicle(head, en):
                       " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
     mylist.pack(side=tk.LEFT, fill=tk.BOTH)
     sc.config(command=mylist.yview)
-    select_button = tk.Button(master, text="select", font=("Arial", 12), width="10", bg="gray40", command=lambda: select_item(mylist, en, master))
+    select_button = tk.Button(master, text="select", borderwidth=3, relief=tk.GROOVE, font=("Arial", 12), width="10", bg="gray40", command=lambda: select_item(mylist, en, master))
     select_button.place(relx=0.85, rely=0.9)
     master.mainloop()
 

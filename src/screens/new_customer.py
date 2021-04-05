@@ -59,13 +59,13 @@ def new_customer(root, head):
     en1.focus()
 
     # sigup
-    signup_button = tk.Button(text="Sign up", width="20", font=("Arial Bold", 12), bg="gray80",
+    signup_button = tk.Button(text="Sign up", width="20", borderwidth=3, relief=tk.GROOVE, font=("Arial Bold", 12), bg="gray80",
                               command=lambda: signup(root, head, temp, en1, en2, en3, en4, en5, en6))
     signup_button.place(relx=0.3, rely=0.68)
 
     # go back to landing page and cancel signup
     back_button = tk.Button(text="back",
-                            width="12",
+                            width="12", borderwidth=3, relief=tk.GROOVE,
                             background="gray80",
                             font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "start"))
@@ -73,7 +73,7 @@ def new_customer(root, head):
 
     # already have an account and sign in
     next_button = tk.Button(text="Sign in",
-                            width="12",
+                            width="12", borderwidth=3, relief=tk.GROOVE,
                             background="gray80",
                             font=("Arial Bold", 10),
                             command=lambda: button.button(root, head, "login_customer"))
