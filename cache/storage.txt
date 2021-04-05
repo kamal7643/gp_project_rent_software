@@ -3,5 +3,5 @@ Abhishek Thakur
 123456
 100100
 on
-bg.jpg
+cars.jpeg
 12345

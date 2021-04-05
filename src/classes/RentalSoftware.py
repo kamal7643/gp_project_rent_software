@@ -22,7 +22,7 @@ class RentalSoftware:
     all_cars = []
     on_rent_cars = []
     on_repair_cars = []
-    availabel_cars = []
+    available_cars = []
     general_data = []
     customers = []
     history = []
@@ -34,30 +34,30 @@ class RentalSoftware:
     email_password = "taasadmin"
 
     # init for software
-    def __init__(self, name, owner_name, owner_phn, Helpline, sound, bg_file_name, pin):
+    def __init__(self, name, owner_name, owner_phn, helpline, sound, bg_file_name, pin):
         self.name = name
         self.owner_name = owner_name
         self.owner_phone_number = owner_phn
-        self.help_line_number = Helpline
+        self.help_line_number = helpline
         self.sound = sound
         self.bg_file_name = bg_file_name
         self.all_cars.clear()
         self.on_rent_cars.clear()
         self.on_repair_cars.clear()
-        self.availabel_cars.clear()
+        self.available_cars.clear()
         self.password = pin
 
     # store all data in master class object (software)
     def __fetch__(self):
 
         # reading cars
-        data = pd.read_excel(r'.\cache\cars.xlsx')
+        data = pd.read_excel(r'./cache/cars.xlsx')
         data = pd.DataFrame(data, columns=['id',
                                            'model',
                                            'repair',
                                            'rent',
                                            'available',
-                                           'prize',
+                                           'price',
                                            'times_rented',
                                            'times_repaired',
                                            'pay_for_repair',
@@ -70,7 +70,7 @@ class RentalSoftware:
                                            'per_hour',
                                            'per_km'])
 
-        self.availabel_cars.clear()
+        self.available_cars.clear()
         self.all_cars.clear()
         self.on_rent_cars.clear()
         self.on_repair_cars.clear()
@@ -83,7 +83,7 @@ class RentalSoftware:
             temp.repair = data['repair'][i]
             temp.rent = data['rent'][i]
             temp.available = data['available'][i]
-            temp.prize = data['prize'][i]
+            temp.price = data['price'][i]
             temp.times_rented = data['times_rented'][i]
             temp.times_repaired = data['times_repaired'][i]
             temp.pay_for_repair = data['pay_for_repair'][i]
@@ -101,7 +101,7 @@ class RentalSoftware:
             if temp.rent == "yes":
                 self.on_rent_cars.append(temp)
             if temp.available == "yes":
-                self.availabel_cars.append(temp)
+                self.available_cars.append(temp)
 
         # reading customers
         customer_data = pd.read_excel(r'./cache/customers.xlsx')
@@ -140,7 +140,7 @@ class RentalSoftware:
         self.history.clear()
 
         # history of the software (storing)
-        f = open("cache\\history.txt", "r")
+        f = open("cache/history.txt", "r")
         line = f.readline()
         while line:
             self.history.append(line[:-1])
@@ -210,9 +210,9 @@ class RentalSoftware:
     # after rent , remove this car from available cars list
 
     def remove_from_available(self, tem):
-        for i in range(len(self.availabel_cars)):
-            if self.availabel_cars[i].model == tem.model and self.availabel_cars[i].AC == tem.AC:
-                self.availabel_cars.pop(i)
+        for i in range(len(self.available_cars)):
+            if self.available_cars[i].model == tem.model and self.available_cars[i].AC == tem.AC:
+                self.available_cars.pop(i)
                 return True
 
     # add car to list of on rent cars
@@ -273,10 +273,10 @@ class RentalSoftware:
             amount *= -1
             text += "refund"
         label = tk.Label(frame, text=str(float(amount)) +
-                         "RS", font=("Arail", 12))
+                         "RS", font=("Arial", 12))
         label.place(relx=0.2, rely=0.3)
         button = tk.Button(frame, text=text, font=(
-            "Arail", 12), command=lambda: self.payment_done(frame, amount, text))
+            "Arial", 12), command=lambda: self.payment_done(frame, amount, text))
         button.place(relx=0.45, rely=0.3)
         return True
 
@@ -284,7 +284,11 @@ class RentalSoftware:
     def return_vehicle(self, tem):
         tem.repair = "yes"
         tem.rent = "no"
+<<<<<<< HEAD
         self.on_repair_cars.append(tem)
+=======
+        self.available_cars.append(tem)
+>>>>>>> c284a8b35a834475cf6f474fb4e3055def4c43ae
         for i in range(len(self.on_rent_cars)):
             if tem.id == self.on_rent_cars[i].id:
                 self.on_rent_cars.pop(i)

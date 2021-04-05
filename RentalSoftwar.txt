@@ -1,0 +1,243 @@
+Software Requirement Specification
+
+
+For
+
+
+Travel Agency Automation Software
+
+
+Version: 1.0.0
+
+
+Prepared by:-
+Girish Kumar
+Kamal Swami
+Abhishek Kumar
+
+
+Group 15 - Alpha
+
+
+
+
+Date:20-03-2021
+
+
+
+
+
+
+
+
+Table of Contents 
+1. Introduction
+1.1 Purpose
+        1.2 Document conventions
+        1.3 Intended Audience and Reading Suggestions
+        1.4 Product Scope 
+        1.5 References
+2. Overall Description
+        2.1 Product Perspective
+        2.2 Product Functions
+        2.3 User Classes and Characteristics
+        2.4 Operating Environment
+        2.5 Design and Implementation constraints
+        2.6 User Documentation
+        2.7 Assumptions and Dependencies
+3. External Interface Requirements
+        3.1 User Interfaces
+        3.2 Hardware Interfaces
+        3.3 Software Interfaces
+        3.4 Communications Interfaces
+4. System Features
+5. Other Nonfunctional Requirements
+        5.1 Performance Requirements
+        5.2 Safety Requirements
+        5.3 Security Requirements
+        5.4 software Quality Attributes
+        5.5 business Rules
+6. Other Requirements
+
+
+
+
+
+
+
+
+
+
+1. Introduction 
+1.1 Purpose-
+The purpose of this document is to build Automation Software for a Travel Agency to automate its various operations.
+
+
+1.2 Document Conventions
+This document follows the following conventions:
+DB - DataBase
+TA - Travel Agency
+Km - Kilometre
+
+
+1.3 Intended Audience a Reading Suggestions
+This software is a prototype of travel agency automation software . it is restricted in college premises only , made under the guidance of college professors. This software is useful for travel agencies as well as for their customers.
+ 
+1.4 Product scope
+The purpose of this travel agency software is to automate the vehicle  booking - renting system, which is easy to use and user friendly for the customers.
+
+
+1.5 References-
+
+
+2.Overall Description
+
+
+2.1 Product Perspective
+This software stores the following information 
+1.Vehicle details - it includes the types of vehicle available , charges for each car.
+2.vehicle status - gone for repair , available or rented out.
+3. Customer description - it includes customer code , name ,address, phone number , ID proof , driving license details. This information is used for keeping records in case of  any emergency and verification purposes.
+
+
+4. Booking status - it includes customer code, customer name , vehicle id, advance payment ,mile -meter reading of car date and timing at rent , expected return date and time.
+
+
+5. Statistical information - it includes the details like price of the car , money spent on repairs of the car, demand , revenue earned from a car, fuel consumption.
+ 
+
+
+2.2 User Classes and Characteristics-
+1. vehicle class-
+  
+ 
+2. System class-  
+3. Customer class-     
+
+
+
+
+
+
+
+
+Use Case diagram
+  
+
+
+
+2.3 Product Functions
+This software performs these functions-
+   1. Vehicles can be rented via this software, and users also can return vehicles . 
+   2. Admin will control all vehicles based on each profit gain from them.
+   3. Software uses python environments. 
+
+
+2.4 Operating Environment- 
+Required environments are -
+   1. Python (version ≥ 3.5)
+   1. pip install pillow
+   2. pip install pandas
+   3. pip install openpyxl xlsxwriter  xlrd
+   2. Excel 
+ 
+2.5 Design and Implementation constraints-
+->Not a fully automated system, requires employees at each booking and return stages. Multi User software (customers/ admin or employees ). 
+-> At the time of return  refund or full payment needs  to be done manually
+ By employees/admin . And car status needs to be changed by employees from rented to available once car received or customers can also update their status that car is returned and its status gets automatically changed by the system.
+
+
+2.6 User Documentation-
+         Gui application needs to be installed on the system .(executable software).otherwise needs to be run manually all files in a python running environment with required software specifications.
+
+
+2.7 Assumptions and Dependencies-
+Some assumptions to this software-
+   1. For this version all informations are stored in component files , so all other copies of the software will work individually. 
+   2. The login system is not there.
+   3. Python works perfectly.
+   4. After every ride vehicle will be repaired.
+   5. While using software component files will be closed.
+   6. Required environment is on.
+
+
+3. External Interface Requirements-
+
+
+3.1 User Interfaces-
+   1. Customer page- 
+        a.1 Important points - basic rules and regulations 
+        a.2  show vehicles - available cars, rented cars, repaired cars
+        a.3 Book vehicle.
+a.4 return vehicle and manage billing
+   2. Admin page-
+        b.1 add or remove vehicles
+        b.2 condemned / sold car
+        b.3 Check statistics 
+        b.4 change car status if car returned and payment done. 
+   3. Help page-
+        Show document-booking procedure, payment details,return method.
+
+
+
+
+3.2 Hardware Interfaces-
+        This software will work on at least 8GB RAM. Internet connection is not required. Printer may be connected. 
+
+
+3.3 software Interfaces-
+        This software will work on windows , linux and mac.
+
+
+3.4 communications Interfaces-
+        The software only interacts with python.
+
+
+4. System features-
+Main page  -  contains customer and admin button.
+
+
+Customer - 
+   * A box with  important info will appear like a minimum time car can be rented , extra charges of overnight rent , AC charges , max charge from perKM or per hour charge whichever applicable .
+   * Button for showing all cars.
+Cars-
+   * Cars icons with its status -  available , rented ,on repair.
+   * Each car has button for showing all details 
+   * Inside all details there is button booking 
+Booking -
+   * First customers have filled out his basic info which is temporary upto car return .
+   * Info like name , phone number ,driving licence detail and all other details given in customer class.
+Admin- 
+   * Add new vehicles 
+   * Condemned cars or sold them(based on car statistics)
+   * Check car statistics
+   * Regulate return car payment / refund details.
+ 
+5. Other Nonfunctional Requirements-
+
+
+5.1 Performance Requirements-
+        In every case response time will be less than 1 second.
+
+
+5.2 safety Requirements-
+        Don’t try to access component files. Otherwise it will be harmful for
+
+
+5.3 Security Requirements-
+        The admin account can be accessed only using a password.
+
+
+5.4 Software Quality Attributes-
+
+
+5.5 business Rules-
+
+
+   1. A car can be rented for a minimum 4 hours.
+   2. Maximum of per hour charge and per km charge will be applied.
+   3. Each returned vehicle will be repaired before the next ride.
+   4.  An AC vehicle of a particular category is charged 50% more than a non-AC vehicle of the same category
+   5. There is a charge of Rs 150 for every night halt regardless of the type of the vehicle.
+   6. When a customer books a car, he has to deposit an advance amount.
+   7. The company can acquire new vehicles and add them to the fleet of its vehicles.

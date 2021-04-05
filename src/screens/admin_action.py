@@ -36,9 +36,13 @@ def admin_action(root, head):
     lid.place(relx=0.15, rely=0.5)
     en = tk.Entry(width="12", font=("Arial", 12))
     en.place(relx=0.25, rely=0.5)
+<<<<<<< HEAD
     # show cars availabe for remove action
     # menu
     # choose_id = tk.ComboboxCombobox
+=======
+    # show cars available for remove action
+>>>>>>> c284a8b35a834475cf6f474fb4e3055def4c43ae
     choose_button = tk.Button(text="choose", font=("Arial", 12), width="10", bg="gray60",
                               command=lambda: handle_remove_vehicle(head, en))
     choose_button.place(relx=0.4, rely=0.5)
@@ -85,7 +89,7 @@ def admin_action(root, head):
     home_button.place(relx=0.45, rely=0.9)
 
 
-# change name of the applcation
+# change name of the application
 def change_name(entry, root, head):
     # validate change name string
     if entry.get() != "":
@@ -292,7 +296,7 @@ def final_add(head, en1, en2, en3, en4, en5):
         head.cars_changes += 1
         head.history.append("new car added")
         head.history_changes += 1
-        head.availabel_cars.append(temp)
+        head.available_cars.append(temp)
         print("added"+str(len(head.all_cars)))
         # clear entry boxes
         en1.delete(0, tk.END)
@@ -329,8 +333,13 @@ def handle_remove_vehicle(head, en):
     sc = tk.Scrollbar(master)
     sc.pack(side=tk.RIGHT, fill=tk.Y)
     mylist = tk.Listbox(master, font=("Arial", 12),
+<<<<<<< HEAD
                         width="100", yscrollcommand=sc)
     for i in head.availabel_cars:
+=======
+                        width="100", yscrollcommand=sc.set)
+    for i in head.available_cars:
+>>>>>>> c284a8b35a834475cf6f474fb4e3055def4c43ae
         mylist.insert(tk.END, "id :"+str(i.id)+" model :"+i.model +
                       " prize :"+str(i.prize)+" AC :"+i.AC+" gain :"+str(i.gain))
     mylist.pack(side=tk.LEFT, fill=tk.BOTH)
@@ -349,11 +358,11 @@ def final_remove(en, head):
     else:
         if d.isdigit():
             d = int(d)
-            for i in range(len(head.availabel_cars)):
+            for i in range(len(head.available_cars)):
                 # if car id match
-                if d == head.availabel_cars[i].id:
+                if d == head.available_cars[i].id:
                     if messagebox.askquestion("Access Required", "Are you sure to remove") == 'yes':
-                        head.availabel_cars.pop(i)
+                        head.available_cars.pop(i)
                         for j in range(len(head.all_cars)):
                             if d == head.all_cars[j].id:
                                 del head.all_cars[j]
