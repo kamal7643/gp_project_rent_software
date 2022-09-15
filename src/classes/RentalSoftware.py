@@ -31,7 +31,7 @@ class RentalSoftware:
     customers_changes = 0
     mails = []
     email_id = "TAAS.SE.LAB.01@gmail.com"
-    email_password = "taasadmin"
+    email_password = 'kehgjmmgblnszoln'#"taasadmin"
 
     # init for software
     def __init__(self, name, owner_name, owner_phn, helpline, sound, bg_file_name, pin):
